@@ -3,9 +3,13 @@ set.seed(1234)
 rmse <- function(theta, theta_star) { sqrt(sum((theta - theta_star)^2)/sum(theta_star^2)) }
 
 ## Common parameters
-nbNodes  <- c(100, 120)
+nbNodes  <- c(60, 90)
 blockProp <- list(row = c(.5, .5), col = c(1/3, 1/3, 1/3)) # group proportions
 nbBlocks <- sapply(blockProp, length)
+covarParam <- c(-2,2)
+covar1 <- matrix(rnorm(prod(nbNodes)), nbNodes[1], nbNodes[2])
+covar2 <- matrix(rnorm(prod(nbNodes)), nbNodes[1], nbNodes[2])
+covarList <- list(covar1 = covar1, covar2 = covar2)
 
 test_that("BipartiteSBM_fit 'Bernoulli' model, undirected, no covariate", {
 
@@ -14,11 +18,11 @@ test_that("BipartiteSBM_fit 'Bernoulli' model, undirected, no covariate", {
   connectParam <- list(mean = means)
 
   ## Basic construction - check for wrong specifications
-  mySampler <- BipartiteSBM_sampler$new('bernoulli', nbNodes, blockProp, connectParam)
+  mySampler <- BipartiteSBM_sampler$new('bernoulli', nbNodes, blockProp, connectParam, covarParam[1], covarList[1])
 
   ## Construction----------------------------------------------------------------
-  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'bernoulli')
-  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'bernouilli'))
+  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'bernoulli', covarList[1])
+  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'bernouilli', covarList[1]))
 
   ## Checking class
   expect_true(inherits(mySBM, "SBM"))
@@ -35,9 +39,9 @@ test_that("BipartiteSBM_fit 'Bernoulli' model, undirected, no covariate", {
 
   ## covariates
   expect_null(mySBM$covarExpect)
-  expect_equal(mySBM$nbCovariates, 0)
-  expect_equal(mySBM$covarList, list())
-  expect_equal(mySBM$covarParam, numeric(0))
+  expect_equal(mySBM$nbCovariates, 1)
+  expect_equal(mySBM$covarList, covarList[1])
+  expect_equal(mySBM$covarParam, 0)
 
   ## S3 methods
   expect_equal(coef(mySBM, 'connectivity'), mySBM$connectParam)
@@ -45,7 +49,7 @@ test_that("BipartiteSBM_fit 'Bernoulli' model, undirected, no covariate", {
   expect_equal(coef(mySBM, 'covariates')  , mySBM$covarParam)
 
   ## Estimation-----------------------------------------------------------------
-  mySBM$optimize(verbosity = 0)
+  mySBM$optimize(verbosity = 0, fast = TRUE)
   mySBM$setModel(5)
 
   ## Expectation
@@ -68,11 +72,8 @@ test_that("BipartiteSBM_fit 'Bernoulli' model, undirected, no covariate", {
   expect_equal(mySBM$predict(), predict(mySBM))
   expect_equal(mySBM$fitted, fitted(mySBM))
   expect_equal(mySBM$fitted, predict(mySBM))
-
-  ## correctness
-  expect_lt(rmse(sort(mySBM$connectParam$mean), sort(means)), .2)
-  expect_lt(1 - aricode::ARI(mySBM$memberships[[1]], mySampler$memberships[[1]]), .2)
-  expect_lt(1 - aricode::ARI(mySBM$memberships[[2]], mySampler$memberships[[2]]), .2)
+  expect_equal(predict(mySBM, covarList[1]), fitted(mySBM))
+  expect_error(predict(mySBM, covarList))
 
 })
 
@@ -83,11 +84,11 @@ test_that("BipartiteSBM_fit 'Poisson' model, undirected, no covariate", {
   connectParam <- list(mean = means)
 
   ## Basic construction - check for wrong specifications
-  mySampler <- BipartiteSBM_sampler$new('poisson', nbNodes, blockProp, connectParam)
+  mySampler <- BipartiteSBM_sampler$new('poisson', nbNodes, blockProp, connectParam, covarParam, covarList)
 
   ## Construction----------------------------------------------------------------
-  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'poisson')
-  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'poison'))
+  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'poisson', covarList)
+  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'poison', covarList))
 
   ## Checking class
   expect_true(inherits(mySBM, "SBM"))
@@ -104,9 +105,9 @@ test_that("BipartiteSBM_fit 'Poisson' model, undirected, no covariate", {
 
   ## covariates
   expect_null(mySBM$covarExpect)
-  expect_equal(mySBM$nbCovariates, 0)
-  expect_equal(mySBM$covarList, list())
-  expect_equal(mySBM$covarParam, numeric(0))
+  expect_equal(mySBM$nbCovariates, 2)
+  expect_equal(mySBM$covarList, covarList)
+  expect_equal(mySBM$covarParam, c(0,0))
 
   ## S3 methods
   expect_equal(coef(mySBM, 'connectivity'), mySBM$connectParam)
@@ -129,6 +130,11 @@ test_that("BipartiteSBM_fit 'Poisson' model, undirected, no covariate", {
   expect_equal(sort(unique(mySBM$memberships[[1]])), 1:nbBlocks[1])
   expect_equal(sort(unique(mySBM$memberships[[2]])), 1:nbBlocks[2])
 
+  ## correctness
+  expect_lt(rmse(sort(mySBM$connectParam$mean), sort(means)), 1e-1)
+  expect_lt(1 - aricode::ARI(mySBM$memberships[[1]], mySampler$memberships[[1]]), 1e-1)
+  expect_lt(1 - aricode::ARI(mySBM$memberships[[2]], mySampler$memberships[[2]]), 1e-1)
+
   ## S3 methods
   expect_equal(coef(mySBM, 'connectivity'), mySBM$connectParam)
   expect_equal(coef(mySBM, 'block')       , mySBM$blockProp)
@@ -136,11 +142,8 @@ test_that("BipartiteSBM_fit 'Poisson' model, undirected, no covariate", {
   expect_equal(mySBM$predict(), predict(mySBM))
   expect_equal(mySBM$fitted, fitted(mySBM))
   expect_equal(mySBM$fitted, predict(mySBM))
-
-  ## correctness
-  expect_lt(rmse(sort(mySBM$connectParam$mean), sort(means)), 1e-1)
-  expect_lt(1 - aricode::ARI(mySBM$memberships[[1]], mySampler$memberships[[1]]), 1e-1)
-  expect_lt(1 - aricode::ARI(mySBM$memberships[[2]], mySampler$memberships[[2]]), 1e-1)
+  expect_equal(predict(mySBM, covarList), fitted(mySBM))
+  expect_error(predict(mySBM, covarList[1]))
 
 })
 
@@ -151,11 +154,11 @@ test_that("BipartiteSBM_fit 'Gaussian' model, undirected, no covariate", {
   connectParam <- list(mean = means, var = .1)
 
   ## Basic construction - check for wrong specifications
-  mySampler <- BipartiteSBM_sampler$new('gaussian', nbNodes, blockProp, connectParam)
+  mySampler <- BipartiteSBM_sampler$new('gaussian', nbNodes, blockProp, connectParam, covarParam, covarList)
 
   ## Construction----------------------------------------------------------------
-  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'gaussian')
-  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'groß'))
+  mySBM <- BipartiteSBM_fit$new(mySampler$netMatrix, 'gaussian', covarList)
+  expect_error(BipartiteSBM_fit$new(SamplerBernoulli$netMatrix, 'groß', covarList))
 
   ## Checking class
   expect_true(inherits(mySBM, "SBM"))
@@ -172,9 +175,9 @@ test_that("BipartiteSBM_fit 'Gaussian' model, undirected, no covariate", {
 
   ## covariates
   expect_null(mySBM$covarExpect)
-  expect_equal(mySBM$nbCovariates, 0)
-  expect_equal(mySBM$covarList, list())
-  expect_equal(mySBM$covarParam, numeric(0))
+  expect_equal(mySBM$nbCovariates, 2)
+  expect_equal(mySBM$covarList, covarList)
+  expect_equal(mySBM$covarParam, c(0,0))
 
   ## S3 methods
   expect_equal(coef(mySBM, 'connectivity'), mySBM$connectParam)
@@ -203,6 +206,7 @@ test_that("BipartiteSBM_fit 'Gaussian' model, undirected, no covariate", {
   expect_equal(mySBM$predict(), predict(mySBM))
   expect_equal(mySBM$fitted, fitted(mySBM))
   expect_equal(mySBM$fitted, predict(mySBM))
+  expect_equal(predict(mySBM, covarList), fitted(mySBM))
 
   ## correctness
   expect_lt(rmse(sort(mySBM$connectParam$mean), sort(means)), 1e-1)

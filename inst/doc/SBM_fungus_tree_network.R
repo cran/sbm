@@ -41,6 +41,10 @@ plot(mySimpleSBM, type = "data", rowLabel = 'tree', colLabel = 'tree')
 ## ----simpleSBMfit plot2-------------------------------------------------------
 plot(mySimpleSBM, type = "expected", rowLabel = 'tree', colLabel = 'tree')
 
+## ----simpleSBMfit coef--------------------------------------------------------
+coef(mySimpleSBM, 'block')
+coef(mySimpleSBM, 'connectivity')
+
 ## ----simpleSBM storedModel----------------------------------------------------
 mySimpleSBM$storedModels %>% kable()
 
@@ -76,6 +80,10 @@ plot(mySimpleSBMPoisson, type = "data", rowLabel = 'tree', colLabel = 'tree')
 ## ----simpleSBMfitPoisson plot2------------------------------------------------
 plot(mySimpleSBMPoisson, type = "expected", rowLabel = 'tree', colLabel = 'tree')
 
+## ----simpleSBMfitPoisson coef-------------------------------------------------
+coef(mySimpleSBMPoisson, 'block')
+coef(mySimpleSBMPoisson, 'connectivity')
+
 ## ----covar SBM,echo=TRUE,eval= TRUE-------------------------------------------
 mySimpleSBMCov<- 
   tree_tree %>% 
@@ -95,6 +103,14 @@ mySimpleSBMCov$blockProp
 mySimpleSBMCov$memberships
 mySimpleSBMCov$covarParam
 
+## ----simpleSBMfitPoisson covar coef-------------------------------------------
+coef(mySimpleSBMCov, 'covariates')
+
+## ----simpleSBMfitPoisson covar fitted, results='hide'-------------------------
+fitted(mySimpleSBMCov)
+predict(mySimpleSBMCov)
+predict(mySimpleSBMCov, fungus_tree_network$covar_tree)
+
 ## ----plot incidence-----------------------------------------------------------
 plotMyMatrix(fungus_tree_network$fungus_tree, rowLabel = 'fungis', colLabel = 'tree')
 
@@ -107,6 +123,8 @@ myBipartiteSBM <-
 myBipartiteSBM$nbNodes
 myBipartiteSBM$nbBlocks
 myBipartiteSBM$connectParam
+coef(myBipartiteSBM, 'block')
+coef(myBipartiteSBM, 'connectivity')
 
 ## ----plot bipartite-----------------------------------------------------------
 plot(myBipartiteSBM, rowLabel = 'fungis',colLabel = 'tree')
