@@ -20,6 +20,8 @@ R6 class for Bipartite SBM sampler
 
 \item{\code{nbDyads}}{number of dyads (potential edges in the network)}
 
+\item{\code{nbConnectParam}}{number of parameter used for the connectivity}
+
 \item{\code{memberships}}{list of size 2: vector of memberships in row, in column.}
 
 \item{\code{indMemberships}}{list of 2 matrix for clustering memberships}
@@ -57,6 +59,7 @@ constructor for SBM
   nbNodes,
   blockProp,
   connectParam,
+  dimLabels = list(row = "rowLabel", col = "colLabel"),
   covarParam = numeric(0),
   covarList = list()
 )}\if{html}{\out{</div>}}
@@ -72,6 +75,8 @@ constructor for SBM
 \item{\code{blockProp}}{parameters for block proportions (vector of list of vectors)}
 
 \item{\code{connectParam}}{list of parameters for connectivity with a matrix of means 'mean' and an optional scalar for the variance 'var'. The dimensions of mu must match \code{blockProp} lengths}
+
+\item{\code{dimLabels}}{optional labels of each dimension (in row, in column)}
 
 \item{\code{covarParam}}{optional vector of covariates effect}
 

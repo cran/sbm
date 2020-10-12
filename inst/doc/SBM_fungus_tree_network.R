@@ -20,11 +20,11 @@ str(fungus_tree_network, max.level = 1)
 tree_tree_binary <- 1 * (fungus_tree_network$tree_tree != 0)
 
 ## ----tree_tree_binary network plot data---------------------------------------
-plotMyMatrix(tree_tree_binary, rowLabel = 'tree', colLabel = 'tree')
+plotMyMatrix(tree_tree_binary, dimLabels = list(row = 'tree', col = 'tree') )
 
 ## ----simpleSBM----------------------------------------------------------------
 mySimpleSBM <- tree_tree_binary %>% 
-  estimateSimpleSBM("bernoulli", estimOptions = list(verbosity = 0, plot = FALSE))
+  estimateSimpleSBM("bernoulli", dimLabels = list(row = 'tree', col='tree'), estimOptions = list(verbosity = 0, plot = FALSE))
 
 ## ----simpleSBMfit-------------------------------------------------------------
 class(mySimpleSBM)
@@ -36,10 +36,10 @@ mySimpleSBM$nbNodes
 mySimpleSBM$nbCovariates
 
 ## ----simpleSBMfit plot1-------------------------------------------------------
-plot(mySimpleSBM, type = "data", rowLabel = 'tree', colLabel = 'tree')
+plot(mySimpleSBM, type = "data", dimLabels  = list(row = 'tree', col= 'tree'))
 
 ## ----simpleSBMfit plot2-------------------------------------------------------
-plot(mySimpleSBM, type = "expected", rowLabel = 'tree', colLabel = 'tree')
+plot(mySimpleSBM, type = "expected", dimLabels  = list(row = 'tree', col= 'tree'))
 
 ## ----simpleSBMfit coef--------------------------------------------------------
 coef(mySimpleSBM, 'block')
@@ -55,15 +55,15 @@ mySimpleSBM$storedModels %>%
 ## ----simpleSBMfit changeModel-------------------------------------------------
 mySimpleSBM$setModel(4)
 mySimpleSBM$nbBlocks
-mySimpleSBM$plot(type = 'expected', rowLabel = 'tree', colLabel = 'tree')
+mySimpleSBM$plot(type = 'expected')
 
 ## ----tree_tree network plot data----------------------------------------------
 tree_tree <- fungus_tree_network$tree_tree
-plotMyMatrix(tree_tree, rowLabel = 'tree', colLabel = 'tree')
+plotMyMatrix(tree_tree, dimLabels = list(row = 'tree', col = 'tree'))
 
 ## ----simpleSBM Poisson--------------------------------------------------------
 mySimpleSBMPoisson <- tree_tree %>% 
-  estimateSimpleSBM("poisson", estimOptions = list(verbosity = 0, plot = FALSE))
+  estimateSimpleSBM("poisson", dimLabels = list(row = 'tree', col= 'tree'),estimOptions = list(verbosity = 0, plot = FALSE))
 
 ## ----simpleSBMfitPoisson------------------------------------------------------
 class(mySimpleSBMPoisson)
@@ -75,10 +75,10 @@ mySimpleSBMPoisson$nbNodes
 mySimpleSBMPoisson$nbCovariates
 
 ## ----simpleSBMfitPoisson plot1------------------------------------------------
-plot(mySimpleSBMPoisson, type = "data", rowLabel = 'tree', colLabel = 'tree')
+plot(mySimpleSBMPoisson, type = "data", dimLabels = list(row = 'tree', col= 'tree'))
 
 ## ----simpleSBMfitPoisson plot2------------------------------------------------
-plot(mySimpleSBMPoisson, type = "expected", rowLabel = 'tree', colLabel = 'tree')
+plot(mySimpleSBMPoisson, type = "expected", dimLabels = list(row = 'tree', col= 'tree'))
 
 ## ----simpleSBMfitPoisson coef-------------------------------------------------
 coef(mySimpleSBMPoisson, 'block')
@@ -90,6 +90,7 @@ mySimpleSBMCov<-
   estimateSimpleSBM(
     model = 'poisson', 
     directed = FALSE, 
+    dimLabels = list(row = 'tree', col= 'tree'),
     covariates  = fungus_tree_network$covar_tree, 
     estimOptions = list(verbosity = 0, plot = FALSE, nbCores = 1)
   )
@@ -112,12 +113,12 @@ predict(mySimpleSBMCov)
 predict(mySimpleSBMCov, fungus_tree_network$covar_tree)
 
 ## ----plot incidence-----------------------------------------------------------
-plotMyMatrix(fungus_tree_network$fungus_tree, rowLabel = 'fungis', colLabel = 'tree')
+plotMyMatrix(fungus_tree_network$fungus_tree, dimLabels = list(row = 'fungis', col= 'tree'))
 
 ## ----tree_fungi_bipartite network---------------------------------------------
 myBipartiteSBM <- 
   fungus_tree_network$fungus_tree %>% 
-  estimateBipartiteSBM(model = 'bernoulli', estimOptions = list(verbosity = 0, plot = FALSE))
+  estimateBipartiteSBM(model = 'bernoulli', dimLabels = list(row = 'fungis', col= 'tree'),estimOptions = list(verbosity = 0, plot = FALSE))
 
 ## ----bipartite.sbm fields-----------------------------------------------------
 myBipartiteSBM$nbNodes
@@ -127,5 +128,5 @@ coef(myBipartiteSBM, 'block')
 coef(myBipartiteSBM, 'connectivity')
 
 ## ----plot bipartite-----------------------------------------------------------
-plot(myBipartiteSBM, rowLabel = 'fungis',colLabel = 'tree')
+plot(myBipartiteSBM, dimLabels = list(row = 'fungis', col = 'tree'))
 

@@ -22,10 +22,11 @@ BipartiteSBM_fit <-
       #' @description constructor for a Bipartite SBM fit
       #' @param incidenceMatrix rectangular (weighted) matrix
       #' @param model character (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'})
+      #' @param dimLabels labels of each dimension (in row, in columns)
       #' @param covarList and optional list of covariates, each of whom must have the same dimension as \code{incidenceMatrix}
-      initialize = function(incidenceMatrix, model, covarList=list()) {
+      initialize = function(incidenceMatrix, model, dimLabels=list(row="rowLabel", col="colLabel"), covarList=list()) {
         ## INITIALIZE THE SBM OBJECT ACCORDING TO THE DATA
-        super$initialize(incidenceMatrix, model, covarList)
+        super$initialize(incidenceMatrix, model, dimLabels, covarList)
 
       },
       #' @description function to perform optimization
@@ -103,8 +104,14 @@ BipartiteSBM_fit <-
       nbBlocks    = function(value) {sapply(private$pi, length)},
       #' @field nbDyads number of dyads (potential edges in the network)
       nbDyads     = function(value) {private$dim[1] * private$dim[2]},
+      #' @field nbConnectParam number of parameter used for the connectivity
+      nbConnectParam = function(value) {self$nbBlocks[1]*self$nbBlocks[2]},
       #' @field memberships list of size 2: vector of memberships in row, in column.
       memberships = function(value) {lapply(private$tau, as_clustering)},
+      #' @field penalty double, value of the penalty term in ICL
+      penalty  = function(value) {(self$nbConnectParam + self$nbCovariates) * log(self$nbDyads) + (self$nbBlocks[1]-1) * log(self$nbNodes[1]) + (self$nbBlocks[2]-1) * log(self$nbNodes[2])},
+      #' @field entropy double, value of the entropy due to the clustering distribution
+      entropy  = function(value) {-sum(.xlogx(private$tau[[1]]))-sum(.xlogx(private$tau[[2]]))},
       #' @field storedModels data.frame of all models fitted (and stored) during the optimization
       storedModels = function(value) {
         rowBlocks <- c(0, unlist(sapply(private$BMobject$memberships, function(m) ncol(m$Z1))))

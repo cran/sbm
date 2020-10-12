@@ -23,7 +23,13 @@ This class is designed to give a representation and adjust an LBM fitted with bl
 
 \item{\code{nbDyads}}{number of dyads (potential edges in the network)}
 
+\item{\code{nbConnectParam}}{number of parameter used for the connectivity}
+
 \item{\code{memberships}}{list of size 2: vector of memberships in row, in column.}
+
+\item{\code{penalty}}{double, value of the penalty term in ICL}
+
+\item{\code{entropy}}{double, value of the entropy due to the clustering distribution}
 
 \item{\code{storedModels}}{data.frame of all models fitted (and stored) during the optimization}
 }
@@ -55,7 +61,12 @@ This class is designed to give a representation and adjust an LBM fitted with bl
 \subsection{Method \code{new()}}{
 constructor for a Bipartite SBM fit
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$new(incidenceMatrix, model, covarList = list())}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$new(
+  incidenceMatrix,
+  model,
+  dimLabels = list(row = "rowLabel", col = "colLabel"),
+  covarList = list()
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -64,6 +75,8 @@ constructor for a Bipartite SBM fit
 \item{\code{incidenceMatrix}}{rectangular (weighted) matrix}
 
 \item{\code{model}}{character (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'})}
+
+\item{\code{dimLabels}}{labels of each dimension (in row, in columns)}
 
 \item{\code{covarList}}{and optional list of covariates, each of whom must have the same dimension as \code{incidenceMatrix}}
 }

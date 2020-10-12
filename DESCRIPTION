@@ -1,6 +1,6 @@
 Package: sbm
 Title: Stochastic Blockmodels
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: 
     c(person(given = "Julien", family = "Chiquet", role = c("aut", "cre"),
            email = "julien.chiquet@inrae.fr",
@@ -8,7 +8,7 @@ Authors@R:
       person(given = "Sophie", family = "Donnet", role = c("aut"),
            email = "sophie.donnet@inrae.fr"),
       person("großBM team", role = c("ctb")),
-      person(given = "Pierre", family = "Barbillon", role = c("ctb"),
+      person(given = "Pierre", family = "Barbillon", role = c("aut"),
            email = "pierre.barbillon@agroparistech.fr",
            comment = c(ORCID = "0000-0002-7766-7693")))
 Description: A collection of tools and function to adjust a variety of stochastic blockmodels (SBM). 
@@ -34,11 +34,11 @@ LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 NeedsCompilation: yes
-Packaged: 2020-07-17 07:13:24 UTC; jchiquet
+Packaged: 2020-10-12 18:48:09 UTC; jchiquet
 Author: Julien Chiquet [aut, cre] (<https://orcid.org/0000-0002-3629-3429>),
   Sophie Donnet [aut],
   großBM team [ctb],
-  Pierre Barbillon [ctb] (<https://orcid.org/0000-0002-7766-7693>)
+  Pierre Barbillon [aut] (<https://orcid.org/0000-0002-7766-7693>)
 Maintainer: Julien Chiquet <julien.chiquet@inrae.fr>
 Repository: CRAN
-Date/Publication: 2020-07-17 09:20:02 UTC
+Date/Publication: 2020-10-12 19:20:02 UTC

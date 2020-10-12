@@ -1,4 +1,4 @@
-#' R6 Class definition of an Simple SBM fit
+#' R6 Class definition of a Simple SBM fit
 #'
 #' This class is designed to give a representation and adjust an SBM fitted with blockmodels.
 #'
@@ -21,15 +21,16 @@ SimpleSBM_fit <-
       #' @param adjacencyMatrix square (weighted) matrix
       #' @param model character (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'})
       #' @param directed logical, directed network or not. In not, \code{adjacencyMatrix} must be symmetric.
+      #' @param dimLabels list of labels of each dimension (in row, in columns)
       #' @param covarList and optional list of covariates, each of whom must have the same dimension as \code{adjacencyMatrix}
-      initialize = function(adjacencyMatrix, model, directed, covarList=list()) {
+      initialize = function(adjacencyMatrix, model, directed, dimLabels=list(row="rowLabel", col="colLabel"), covarList=list()) {
 
         ## SANITY CHECKS
         stopifnot(all.equal(nrow(adjacencyMatrix), ncol(adjacencyMatrix)))  # matrix must be square
         stopifnot(isSymmetric(adjacencyMatrix) == !directed)                # symmetry and direction must agree
 
         ## INITIALIZE THE SBM OBJECT ACCORDING TO THE DATA
-        super$initialize(adjacencyMatrix, model, covarList)
+        super$initialize(adjacencyMatrix, model, dimLabels, covarList)
         private$directed_ <- directed
 
       },
@@ -107,8 +108,14 @@ SimpleSBM_fit <-
       nbDyads     = function(value) {ifelse(private$directed_, self$nbNodes*(self$nbNodes - 1), self$nbNodes*(self$nbNodes - 1)/2)},
       #' @field memberships vector of clustering
       memberships = function(value) {as_clustering(private$tau)},
+      #' @field nbConnectParam number of parameter used for the connectivity
+      nbConnectParam = function(value) {ifelse(private$directed_, self$nbBlocks^2, self$nbBlocks*(self$nbBlocks + 1)/2)},
       #' @field directed is the network directed or not
       directed = function(value) {private$directed_},
+      #' @field penalty double, value of the penalty term in ICL
+      penalty  = function(value) {(self$nbConnectParam + self$nbCovariates) * log(self$nbDyads) + (self$nbBlocks-1) * log(self$nbNodes)},
+      #' @field entropy double, value of the entropy due to the clustering distribution
+      entropy  = function(value) {-sum(.xlogx(private$tau))},
       #' @field storedModels data.frame of all models fitted (and stored) during the optimization
       storedModels = function(value) {
         nbBlocks <- unlist(sapply(private$BMobject$memberships, function(m) ncol(m$Z)))
