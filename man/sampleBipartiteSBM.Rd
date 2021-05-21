@@ -9,7 +9,7 @@ sampleBipartiteSBM(
   blockProp,
   connectParam,
   model = "bernoulli",
-  dimLabels = list(row = "rowLabel", col = "colLabels"),
+  dimLabels = c(row = "rowName", col = "colName"),
   covariates = list(),
   covariatesParam = numeric(0)
 )
@@ -21,7 +21,7 @@ sampleBipartiteSBM(
 
 \item{connectParam}{list of parameters for connectivity with a matrix of means 'mean' and an optional matrix of variances 'var', the sizes of which must match \code{blockProp} length (in row, respectively in column)}
 
-\item{model}{character describing the model for the relation between nodes (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'}, ...). Default is \code{'bernoulli'}.}
+\item{model}{character describing the model for the relation between nodes (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'}, \code{'ZIgaussian'}). Default is \code{'bernoulli'}.}
 
 \item{dimLabels}{an optional list of labels for each dimension (in row, in column)}
 
@@ -30,7 +30,7 @@ sampleBipartiteSBM(
 \item{covariatesParam}{optional vector of covariates effect. A zero length numeric vector by default.}
 }
 \value{
-an object with class \code{\link{BipartiteSBM_sampler}}
+an object with class \code{\link{BipartiteSBM}}
 }
 \description{
 This function samples a simple Stochastic Block Models, with various model
@@ -48,13 +48,14 @@ means <- matrix(runif(6), 2, 3)  # connectivity matrix
 connectParam <- list(mean = means)
 
 ## Graph Sampling
-mySampler <- sampleBipartiteSBM(nbNodes, blockProp, connectParam, model = 'bernoulli')
+dimLabels = c(row='Reader',col='Book')
+mySampler <- sampleBipartiteSBM(nbNodes, blockProp, connectParam, model = 'bernoulli',dimLabels)
 plot(mySampler)
+plot(mySampler,type='meso',plotOptions = list(vertex.label.name=list(row='Reader',col='Book')))
+plot(mySampler,type='meso',plotOptions = list(vertex.label.name=c('A','B'),vertex.size = 1.4))
 mySampler$rMemberships() # sample new memberships
-mySampler$rIncidence()   # sample new incidence matrix
-plot(mySampler)
-hist(mySampler$netMatrix)
-
+mySampler$rEdges()   # sample new edges
+mySampler$rNetwork()   # sample a new networrk (blocks and edges)
 ### =======================================
 ### BIPARTITE POISSON SBM
 ## Graph parameters
@@ -66,9 +67,12 @@ means <- matrix(rbinom(6, 30, 0.25), 2, 3)  # connectivity matrix
 connectParam <- list(mean = means)
 
 ## Graph Sampling
-mySampler <- sampleBipartiteSBM(nbNodes, blockProp, connectParam, model = 'poisson')
-plot(mySampler)
-hist(mySampler$netMatrix)
+dimLabels = c(row = 'Ind', col = 'Service')
+mySampler <- sampleBipartiteSBM(nbNodes, blockProp, connectParam, model = 'poisson', dimLabels)
+plot(mySampler,type='expected')
+plotOptions = list(vertex.label.name=c('U','V'),vertex.size = c(1.4,1.3))
+plot(mySampler, type='meso', plotOptions = plotOptions)
+hist(mySampler$networkData)
 
 ### =======================================
 ### BIPARTITE GAUSSIAN SBM
@@ -83,6 +87,6 @@ connectParam <- list(mean = means, var = 1)
 ## Graph Sampling
 mySampler <- sampleBipartiteSBM(nbNodes, blockProp, connectParam, model = 'gaussian')
 plot(mySampler)
-hist(mySampler$netMatrix)
+hist(mySampler$networkData)
 
 }

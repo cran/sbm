@@ -2,24 +2,26 @@
 % Please edit documentation in R/R6Class-SBM.R
 \name{SBM}
 \alias{SBM}
-\title{R6 virtual class for SBM representation (mother class of Simple and Bipartite SBM fit and sampler)}
+\title{R6 virtual class for SBM representation (mother class of SimpleSBM, BipartiteSBM, MultipartiteSBM)}
 \description{
-R6 virtual class for SBM representation (mother class of Simple and Bipartite SBM fit and sampler)
+R6 virtual class for SBM representation (mother class of SimpleSBM, BipartiteSBM, MultipartiteSBM)
 
-R6 virtual class for SBM representation (mother class of Simple and Bipartite SBM fit and sampler)
+R6 virtual class for SBM representation (mother class of SimpleSBM, BipartiteSBM, MultipartiteSBM)
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{dimension}}{size-2 vector: dimension of the network}
-
 \item{\code{modelName}}{character, the family of model for the distribution of the edges}
 
-\item{\code{dimLabels}}{vector of characters, the label of each dimension}
+\item{\code{directed}}{mode of the network data (directed or not or not applicable)}
+
+\item{\code{dimLabels}}{vector or list of characters, the label of each dimension}
+
+\item{\code{nbNodes}}{vector describing the number of the successive elements connecting the network}
 
 \item{\code{nbCovariates}}{integer, the number of covariates}
 
-\item{\code{blockProp}}{vector of block proportions (aka prior probabilities of each block)}
+\item{\code{blockProp}}{block proportions (aka prior probabilities of each block)}
 
 \item{\code{connectParam}}{parameters associated to the connectivity of the SBM, e.g. matrix of inter/inter block probabilities when model is Bernoulli}
 
@@ -31,7 +33,9 @@ R6 virtual class for SBM representation (mother class of Simple and Bipartite SB
 
 \item{\code{covarEffect}}{effect of covariates}
 
-\item{\code{netMatrix}}{the matrix (adjacency or incidence) encoding the network}
+\item{\code{networkData}}{the network data (adjacency or incidence matrix or list of such object)}
+
+\item{\code{expectation}}{expected values of connection under the current model}
 }
 \if{html}{\out{</div>}}
 }
@@ -39,7 +43,7 @@ R6 virtual class for SBM representation (mother class of Simple and Bipartite SB
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{SBM$new()}}
-\item \href{#method-plot}{\code{SBM$plot()}}
+\item \href{#method-rNetwork}{\code{SBM$rNetwork()}}
 \item \href{#method-show}{\code{SBM$show()}}
 \item \href{#method-print}{\code{SBM$print()}}
 \item \href{#method-clone}{\code{SBM$clone()}}
@@ -52,11 +56,12 @@ R6 virtual class for SBM representation (mother class of Simple and Bipartite SB
 constructor for SBM
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SBM$new(
-  model = "",
-  dimension = numeric(2),
-  dimLabels = vector("list", 2),
-  blockProp = numeric(0),
-  connectParam = list(mean = matrix()),
+  model = vector("character", 0),
+  directed = vector("logical", 0),
+  dimension = vector("numeric", 0),
+  dimLabels = vector("character", 0),
+  blockProp = vector("numeric", 0),
+  connectParam = vector("list", 0),
   covarParam = numeric(length(covarList)),
   covarList = list()
 )}\if{html}{\out{</div>}}
@@ -67,11 +72,13 @@ constructor for SBM
 \describe{
 \item{\code{model}}{character describing the type of model}
 
-\item{\code{dimension}}{dimension of the network matrix}
+\item{\code{directed}}{logical describing if the network data is directed or not}
 
-\item{\code{dimLabels}}{labels of each dimension (in row, in columns)}
+\item{\code{dimension}}{dimension of the network data}
 
-\item{\code{blockProp}}{parameters for block proportions (vector of list of vectors)}
+\item{\code{dimLabels}}{labels of each dimension}
+
+\item{\code{blockProp}}{parameters for block proportions (vector or list of vectors)}
 
 \item{\code{connectParam}}{list of parameters for connectivity}
 
@@ -83,25 +90,23 @@ constructor for SBM
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot"></a>}}
-\if{latex}{\out{\hypertarget{method-plot}{}}}
-\subsection{Method \code{plot()}}{
-basic matrix plot method for SBM object
+\if{html}{\out{<a id="method-rNetwork"></a>}}
+\if{latex}{\out{\hypertarget{method-rNetwork}{}}}
+\subsection{Method \code{rNetwork()}}{
+a method to sample a network data for the current SBM (blocks and edges)
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SBM$plot(type = c("data", "expected"), ordered = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SBM$rNetwork(store = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{character for the type of plot: either 'data' (true connection) or 'expected' (fitted connection). Default to 'data'.}
-
-\item{\code{ordered}}{logical: should the rows and columns be reordered according to the clustering? Default to \code{TRUE}.}
+\item{\code{store}}{should the sampled network be stored (and overwrite the existing data)? Default to FALSE}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-a ggplot2 object
+a list with the sampled block and network
 }
 }
 \if{html}{\out{<hr>}}

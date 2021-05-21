@@ -1,44 +1,50 @@
 Package: sbm
 Title: Stochastic Blockmodels
-Version: 0.2.2
+Version: 0.4.1
 Authors@R: 
-    c(person(given = "Julien", family = "Chiquet", role = c("aut", "cre"),
+  c(person(given = "Julien", family = "Chiquet", role = c("aut", "cre"),
            email = "julien.chiquet@inrae.fr",
            comment = c(ORCID = "0000-0002-3629-3429")),
-      person(given = "Sophie", family = "Donnet", role = c("aut"),
-           email = "sophie.donnet@inrae.fr"),
-      person("großBM team", role = c("ctb")),
-      person(given = "Pierre", family = "Barbillon", role = c("aut"),
+    person(given = "Sophie", family = "Donnet", role = c("aut"),
+           email = "sophie.donnet@inrae.fr",
+           comment = c(ORCID = "0000-0003-4370-7316")),
+    person("großBM team", role = c("ctb")),
+    person(given = "Pierre", family = "Barbillon", role = c("aut"),
            email = "pierre.barbillon@agroparistech.fr",
            comment = c(ORCID = "0000-0002-7766-7693")))
-Description: A collection of tools and function to adjust a variety of stochastic blockmodels (SBM). 
-  Support at the moment Simple and Bipartite SBM (undirected and directed) for Bernoulli, Poisson and 
-  Gaussian emission laws of the edges as described in Léger, 2016 <arxiv:1602.07587>.
+Description: A collection of tools and functions to adjust a variety of stochastic blockmodels (SBM). 
+  Supports at the moment Simple, Bipartite, 'Multipartite' and Multiplex SBM (undirected or directed with Bernoulli,
+  Poisson or Gaussian emission laws on the edges, and possibly covariate for Simple and Bipartite SBM).
+  See Léger (2016) <arxiv:1602.07587>, 'Barbillon et al.' (2020) <doi:10.1111/rssa.12193> and 
+  'Bar-Hen et al.' (2020) <arxiv:1807.10138>.
 URL: https://grosssbm.github.io/sbm/
 BugReports: https://github.com/GrossSBM/sbm/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Suggests: testthat, spelling, knitr, rmarkdown, alluvial, igraph,
-        aricode, covr
+Suggests: testthat, spelling, knitr, rmarkdown, aricode, covr
 Language: en-US
-Imports: magrittr, blockmodels, R6, Rcpp, ggplot2
-Collate: 'R6Class-SBM.R' 'R6Class-SBM_fit.R'
-        'R6Class-BipartiteSBM_fit.R' 'R6Class-SBM_sampler.R'
-        'R6Class-BipartiteSBM_sampler.R' 'R6Class-SimpleSBM_fit.R'
-        'R6Class-SimpleSBM_sampler.R' 'RcppExports.R' 'estimate.R'
-        'fungus_tree_network.R' 'plotMyMatrix.R' 'sample.R'
-        'sbm-package.R' 'utils-pipe.R' 'utils.R'
+Imports: alluvial, magrittr, dplyr, purrr, blockmodels, R6, Rcpp,
+        igraph, ggplot2, GREMLINS, stringr, rlang, reshape, prodlim
+Collate: 'R6Class-SBM.R' 'R6Class-BipartiteSBM.R'
+        'R6Class-BipartiteSBM_fit.R' 'R6Class-MultipartiteSBM.R'
+        'R6Class-MultipartiteSBM_fit.R' 'R6Class-MultiplexSBM_fit.R'
+        'R6Class-SimpleSBM.R' 'R6Class-SimpleSBM_fit.R' 'RcppExports.R'
+        'defineSBM.R' 'estimate.R' 'fungusTreeNetwork.R'
+        'multipartiteEcologicalNetwork.R' 'plotAlluvial.R'
+        'plotMyMatrix.R' 'plotMyMultipartiteMatrix.R'
+        'plotMyMultiplexMatrix.R' 'sample.R' 'sbm-package.R'
+        'utils-pipe.R' 'utils.R' 'utils_plot.R' 'war.R'
 LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 NeedsCompilation: yes
-Packaged: 2020-10-12 18:48:09 UTC; jchiquet
+Packaged: 2021-05-21 11:22:44 UTC; jchiquet
 Author: Julien Chiquet [aut, cre] (<https://orcid.org/0000-0002-3629-3429>),
-  Sophie Donnet [aut],
+  Sophie Donnet [aut] (<https://orcid.org/0000-0003-4370-7316>),
   großBM team [ctb],
   Pierre Barbillon [aut] (<https://orcid.org/0000-0002-7766-7693>)
 Maintainer: Julien Chiquet <julien.chiquet@inrae.fr>
 Repository: CRAN
-Date/Publication: 2020-10-12 19:20:02 UTC
+Date/Publication: 2021-05-21 14:40:02 UTC

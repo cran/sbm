@@ -8,7 +8,7 @@ estimateSimpleSBM(
   netMat,
   model = "bernoulli",
   directed = !isSymmetric(netMat),
-  dimLabels = list(row = "rowLabel", col = "colLabels"),
+  dimLabels = c(node = "nodeName"),
   covariates = list(),
   estimOptions = list()
 )
@@ -40,7 +40,10 @@ The list of parameters \code{estimOptions} essentially tunes the optimization pr
 \item{"verbosity"}{integer for verbosity (0, 1). Default is 1}
 \item{"plot"}{boolean, should the ICL by dynamically plotted or not. Default is TRUE}
 \item{"exploreFactor"}{control the exploration of the number of groups}
+\item{"exploreMin"}{explore at least until exploreMin even if the exploration factor rule is achieved. Default 4. See the package blockmodels for details.}
+\item{"exploreMax"}{Stop exploration at exploreMax  even if the exploration factor rule is not achieved. Default Inf. See the package blockmodels for details.}
 \item{"nbBlocksRange"}{minimal and maximal number or blocks explored}
+\item{"fast"}{logical: should approximation be used for Bernoulli model with covariates. Default to \code{TRUE}}
 }
 }
 \examples{
@@ -53,7 +56,7 @@ blockProp <- c(.5, .25, .25) # group proportions
 means <- diag(.4, 3) + 0.05  # connectivity matrix: affiliation network
 connectParam <- list(mean = means)
 mySampler <- sampleSimpleSBM(nbNodes, blockProp, connectParam)
-adjacencyMatrix <- mySampler$netMatrix
+adjacencyMatrix <- mySampler$networkData
 
 ## Estimation
 mySimpleSBM <-
@@ -62,6 +65,7 @@ plot(mySimpleSBM, 'data', ordered = FALSE)
 plot(mySimpleSBM, 'data')
 plot(mySimpleSBM, 'expected', ordered = FALSE)
 plot(mySimpleSBM, 'expected')
+plot(mySimpleSBM, 'meso')
 
 ### =======================================
 ### SIMPLE POISSON SBM
@@ -72,10 +76,11 @@ blockProp <- c(.5, .25, .25) # group proportions
 means <- diag(15., 3) + 5    # connectivity matrix: affiliation network
 connectParam <- list(mean = means)
 mySampler <- sampleSimpleSBM(nbNodes, blockProp, list(mean = means), model = "poisson")
-adjacencyMatrix <- mySampler$netMatrix
+adjacencyMatrix <- mySampler$networkData
 
 ## Estimation
-mySimpleSBM <- estimateSimpleSBM(adjacencyMatrix, 'poisson', estimOptions = list(plot = FALSE))
+mySimpleSBM <- estimateSimpleSBM(adjacencyMatrix, 'poisson',
+   estimOptions = list(plot = FALSE))
 plot(mySimpleSBM, 'data', ordered = FALSE)
 plot(mySimpleSBM, 'data')
 plot(mySimpleSBM, 'expected', ordered = FALSE)
@@ -92,7 +97,8 @@ connectParam <- list(mean = means, var = 2)
 mySampler <- sampleSimpleSBM(nbNodes, blockProp, connectParam, model = "gaussian")
 
 ## Estimation
-mySimpleSBM <- estimateSimpleSBM(mySampler$netMatrix, 'gaussian', estimOptions = list(plot = FALSE))
+mySimpleSBM <-
+   estimateSimpleSBM(mySampler$networkData, 'gaussian', estimOptions = list(plot = FALSE))
 plot(mySimpleSBM, 'data', ordered = FALSE)
 plot(mySimpleSBM, 'data')
 plot(mySimpleSBM, 'expected', ordered = FALSE)

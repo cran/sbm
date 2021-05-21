@@ -10,22 +10,27 @@ R6 Class definition of an Bipartite SBM fit
 }
 \details{
 This class is designed to give a representation and adjust an LBM fitted with blockmodels.
+
+The list of parameters \code{estimOptions} essentially tunes the optimization process and the variational EM algorithm, with the following parameters
+\itemize{
+\item{"nbCores"}{integer for number of cores used. Default is 2}
+\item{"verbosity"}{integer for verbosity (0, 1). Default is 1}
+\item{"plot"}{boolean, should the ICL by dynamically plotted or not. Default is TRUE}
+\item{"exploreFactor"}{control the exploration of the number of groups}
+\item{"exploreMin"}{explore at least until exploreMin even if the exploration factor rule is achieved. Default 4. See the package blockmodels for details.}
+\item{"exploreMin"}{Stop exploration at exploreMax  even if the exploration factor rule is not achieved. Default Inf. See the package blockmodels for details.}
+\item{"fast"}{logical: should approximation be used for Bernoulli model with covariates. Default to \code{TRUE}}
+}
 }
 \section{Super classes}{
-\code{\link[sbm:SBM]{sbm::SBM}} -> \code{\link[sbm:SBM_fit]{sbm::SBM_fit}} -> \code{BipartiteSBM_fit}
+\code{\link[sbm:SBM]{sbm::SBM}} -> \code{\link[sbm:BipartiteSBM]{sbm::BipartiteSBM}} -> \code{BipartiteSBM_fit}
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{nbNodes}}{vector of size 2: number of nodes (rows, columns)}
+\item{\code{loglik}}{double: approximation of the log-likelihood (variational lower bound) reached}
 
-\item{\code{nbBlocks}}{vector of size 2: number of blocks (rows, columns)}
-
-\item{\code{nbDyads}}{number of dyads (potential edges in the network)}
-
-\item{\code{nbConnectParam}}{number of parameter used for the connectivity}
-
-\item{\code{memberships}}{list of size 2: vector of memberships in row, in column.}
+\item{\code{ICL}}{double: value of the integrated classification log-likelihood}
 
 \item{\code{penalty}}{double, value of the penalty term in ICL}
 
@@ -40,18 +45,21 @@ This class is designed to give a representation and adjust an LBM fitted with bl
 \itemize{
 \item \href{#method-new}{\code{BipartiteSBM_fit$new()}}
 \item \href{#method-optimize}{\code{BipartiteSBM_fit$optimize()}}
-\item \href{#method-predict}{\code{BipartiteSBM_fit$predict()}}
+\item \href{#method-setModel}{\code{BipartiteSBM_fit$setModel()}}
 \item \href{#method-reorder}{\code{BipartiteSBM_fit$reorder()}}
 \item \href{#method-show}{\code{BipartiteSBM_fit$show()}}
 \item \href{#method-clone}{\code{BipartiteSBM_fit$clone()}}
 }
 }
 \if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
+\out{<details ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="SBM" data-id="plot">}\href{../../sbm/html/SBM.html#method-plot}{\code{sbm::SBM$plot()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="sbm" data-topic="SBM" data-id="print">}\href{../../sbm/html/SBM.html#method-print}{\code{sbm::SBM$print()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="SBM_fit" data-id="setModel">}\href{../../sbm/html/SBM_fit.html#method-setModel}{\code{sbm::SBM_fit$setModel()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="SBM" data-id="rNetwork">}\href{../../sbm/html/SBM.html#method-rNetwork}{\code{sbm::SBM$rNetwork()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="BipartiteSBM" data-id="plot">}\href{../../sbm/html/BipartiteSBM.html#method-plot}{\code{sbm::BipartiteSBM$plot()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="BipartiteSBM" data-id="predict">}\href{../../sbm/html/BipartiteSBM.html#method-predict}{\code{sbm::BipartiteSBM$predict()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="BipartiteSBM" data-id="rEdges">}\href{../../sbm/html/BipartiteSBM.html#method-rEdges}{\code{sbm::BipartiteSBM$rEdges()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="sbm" data-topic="BipartiteSBM" data-id="rMemberships">}\href{../../sbm/html/BipartiteSBM.html#method-rMemberships}{\code{sbm::BipartiteSBM$rMemberships()}}\out{</span>}
 }
 \out{</details>}
 }
@@ -64,7 +72,7 @@ constructor for a Bipartite SBM fit
 \if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$new(
   incidenceMatrix,
   model,
-  dimLabels = list(row = "rowLabel", col = "colLabel"),
+  dimLabels = c(row = "rowName", col = "colName"),
   covarList = list()
 )}\if{html}{\out{</div>}}
 }
@@ -89,47 +97,31 @@ constructor for a Bipartite SBM fit
 \subsection{Method \code{optimize()}}{
 function to perform optimization
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$optimize(
-  verbosity = 3,
-  plot = FALSE,
-  explorFactor = 1.5,
-  nbBlocksRange = c(4, Inf),
-  nbCores = 2,
-  fast = TRUE
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$optimize(estimOptions = list())}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verbosity}}{integer, the level of verbosity. Default to 3}
-
-\item{\code{plot}}{logical, if TRUE ploting is done dynamically on the screen. Default to \code{TRUE}}
-
-\item{\code{explorFactor}}{double factor for exploring successive model}
-
-\item{\code{nbBlocksRange}}{2-size vector: range of exploration}
-
-\item{\code{nbCores}}{integer, the number of cores to use. Default is 2.}
-
-\item{\code{fast}}{logical: should approximation be used for Bernoulli model with covariates. Default to \code{TRUE}}
+\item{\code{estimOptions}}{a list of parameters controlling the inference algorithm and model selection. See details.}
 }
 \if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-predict"></a>}}
-\if{latex}{\out{\hypertarget{method-predict}{}}}
-\subsection{Method \code{predict()}}{
-prediction under the currently estimated model
+\if{html}{\out{<a id="method-setModel"></a>}}
+\if{latex}{\out{\hypertarget{method-setModel}{}}}
+\subsection{Method \code{setModel()}}{
+method to select a specific model among the ones fitted during the optimization.
+Fields of the current SBM_fit will be updated accordingly.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$predict(covarList = self$covarList)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{BipartiteSBM_fit$setModel(index)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{covarList}}{a list of covariates. By default, we use the covariates with which the model was estimated.}
+\item{\code{index}}{integer, the index of the model to be selected (row number in storedModels)}
 }
 \if{html}{\out{</div>}}
 }

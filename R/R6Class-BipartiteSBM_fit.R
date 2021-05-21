@@ -3,19 +3,36 @@
 #' This class is designed to give a representation and adjust an LBM fitted with blockmodels.
 #'
 #' @import R6 blockmodels
-#' @include R6Class-SBM_fit.R
 #' @export
 BipartiteSBM_fit <-
-  R6::R6Class(classname = "BipartiteSBM_fit",
-    inherit = SBM_fit,
+  R6::R6Class(
+    classname = "BipartiteSBM_fit",
+    inherit = BipartiteSBM,
     private = list(
-      import_from_BM  = function(index = which.max(private$BMobject$ICL)) {
-        super$import_from_BM(index)
-        private$tau <- list(
+      J              = NULL, # approximation of the log-likelihood
+      vICL           = NULL, # approximation of the ICL
+      BMobject       = NULL, # blockmodels output (used to stored the optimization results when blockmodels is used)
+      import_from_BM = function(index = which.max(private$BMobject$ICL)) {
+        private$J     <- private$BMobject$PL[index]
+        private$vICL  <- private$BMobject$ICL[index]
+        parameters    <- private$BMobject$model_parameters[[index]]
+        private$beta  <- parameters$beta ## NULL if no covariates
+        private$theta <- switch(private$BMobject$model_name,
+          "bernoulli"                 = list(mean = parameters$pi),
+          "bernoulli_covariates"      = list(mean = .logistic(parameters$m)),
+          "bernoulli_covariates_fast" = list(mean = .logistic(parameters$m)),
+          "poisson"                   = list(mean = parameters$lambda),
+          "poisson_covariates"        = list(mean = parameters$lambda),
+          "gaussian"                  = list(mean = parameters$mu, var = parameters$sigma2),
+          "gaussian_covariates"       = list(mean = parameters$mu, var = parameters$sigma2),
+          "ZIgaussian"                = list(mean = parameters$mu, var = parameters$sigma2, p0 = parameters$p0),
+        )
+        private$Z <- list(
           row = private$BMobject$memberships[[index]]$Z1,
           col = private$BMobject$memberships[[index]]$Z2
         )
-        private$pi  <- lapply(private$tau, colMeans)
+        private$pi <- lapply(private$Z, colMeans)
+
       }
     ),
     public = list(
@@ -24,41 +41,77 @@ BipartiteSBM_fit <-
       #' @param model character (\code{'bernoulli'}, \code{'poisson'}, \code{'gaussian'})
       #' @param dimLabels labels of each dimension (in row, in columns)
       #' @param covarList and optional list of covariates, each of whom must have the same dimension as \code{incidenceMatrix}
-      initialize = function(incidenceMatrix, model, dimLabels=list(row="rowLabel", col="colLabel"), covarList=list()) {
+      initialize = function(incidenceMatrix, model, dimLabels=c(row="rowName", col="colName"), covarList=list()) {
+
+        ## SANITY CHECKS on data
+        stopifnot(is.matrix(incidenceMatrix))                            # must be a matrix
+        stopifnot(all(sapply(covarList, nrow) == nrow(incidenceMatrix))) # consistency of the covariates
+        stopifnot(all(sapply(covarList, ncol) == ncol(incidenceMatrix))) # with the network data
+
         ## INITIALIZE THE SBM OBJECT ACCORDING TO THE DATA
-        super$initialize(incidenceMatrix, model, dimLabels, covarList)
-
-      },
-      #' @description function to perform optimization
-      #' @param verbosity integer, the level of verbosity. Default to 3
-      #' @param plot logical, if TRUE ploting is done dynamically on the screen. Default to \code{TRUE}
-      #' @param nbCores integer, the number of cores to use. Default is 2.
-      #' @param explorFactor double factor for exploring successive model
-      #' @param nbBlocksRange 2-size vector: range of exploration
-      #' @param fast logical: should approximation be used for Bernoulli model with covariates. Default to \code{TRUE}
-      optimize = function(verbosity     = 3,
-                          plot          = FALSE,
-                          explorFactor  = 1.5,
-                          nbBlocksRange = c(4,Inf),
-                          nbCores       = 2,
-                          fast          = TRUE) {
-
-        ## translate to blockmodels list of options
-        blockmodelsOptions <- list(
-          verbosity          = verbosity,
-          plotting           = if(plot) character(0) else "",
-          explore_min        = nbBlocksRange[1],
-          explore_max        = nbBlocksRange[2],
-          ncores             = nbCores,
-          exploration_factor = explorFactor
+        connectParam <- switch(model,
+          "bernoulli"  = list(mean = matrix(0, 0, 0)),
+          "poisson"    = list(mean = matrix(0, 0, 0)),
+          "gaussian"   = list(mean = matrix(0, 0, 0), var = 1),
+          "ZIgaussian" = list(mean = matrix(0, 0, 0), var = 1, p0 = 0),
         )
 
+        ## INITIALIZE THE SBM OBJECT ACCORDING TO THE DATA
+        super$initialize(model        = model,
+                         nbNodes      = dim(incidenceMatrix),
+                         blockProp    = rep(list(vector("numeric", 0)), 2),
+                         connectParam = connectParam,
+                         dimLabels    = dimLabels,
+                         covarList    = covarList)
+        private$Y <- incidenceMatrix
+      },
+      #' @description function to perform optimization
+      #' @param estimOptions a list of parameters controlling the inference algorithm and model selection. See details.
+      #' @details The list of parameters \code{estimOptions} essentially tunes the optimization process and the variational EM algorithm, with the following parameters
+      #'  \itemize{
+      #'  \item{"nbCores"}{integer for number of cores used. Default is 2}
+      #'  \item{"verbosity"}{integer for verbosity (0, 1). Default is 1}
+      #'  \item{"plot"}{boolean, should the ICL by dynamically plotted or not. Default is TRUE}
+      #'  \item{"exploreFactor"}{control the exploration of the number of groups}
+      #'  \item{"exploreMin"}{explore at least until exploreMin even if the exploration factor rule is achieved. Default 4. See the package blockmodels for details.}
+      #'  \item{"exploreMin"}{Stop exploration at exploreMax  even if the exploration factor rule is not achieved. Default Inf. See the package blockmodels for details.}
+      #'  \item{"fast"}{logical: should approximation be used for Bernoulli model with covariates. Default to \code{TRUE}}
+      #' }
+      optimize = function(estimOptions = list()){
+
+        if(private$model == 'ZIgaussian') stop("Inference not  yet  implemented for Bipartite ZI gaussian network")
+
+        currentOptions <- list(
+          verbosity     = 3,
+          plot          = TRUE,
+          exploreFactor  = 1.5,
+          exploreMin     = 4,
+          exploreMax     = Inf,
+          nbBlocksRange = c(4,Inf),
+          nbCores       = 2,
+          fast          = TRUE
+        )
+        currentOptions[names(estimOptions)] <- estimOptions
+
+        ## Transform estimOptions to a suited for blockmodels list of options
+        blockmodelsOptions <- list(
+          verbosity          = currentOptions$verbosity,
+          plotting           = if(currentOptions$plot) character(0) else "",
+          explore_min        = currentOptions$exploreMin,
+          explore_max        = currentOptions$exploreMax,
+          ncores             = currentOptions$nbCores,
+          exploration_factor = currentOptions$exploreFactor
+        )
+        fast <- currentOptions$fast
+
         ## generating arguments for blockmodels call
+
         args <- list(membership_type = "LBM", adj = private$Y)
         if (self$nbCovariates > 0) args$covariates <- private$X
         args <- c(args, blockmodelsOptions)
 
         ## model construction
+
         model_type <- ifelse(self$nbCovariates > 0, paste0(private$model,"_covariates"), private$model)
         if (model_type == 'bernoulli_covariates' & fast == TRUE) model_type <- 'bernoulli_covariates_fast'
         private$BMobject <- do.call(paste0("BM_", model_type), args)
@@ -71,53 +124,52 @@ BipartiteSBM_fit <-
 
         invisible(private$BMobject)
       },
-      #' @description prediction under the currently estimated model
-      #' @param covarList a list of covariates. By default, we use the covariates with which the model was estimated.
-      predict = function(covarList = self$covarList) {
-        stopifnot(is.list(covarList), self$nbCovariates == length(covarList))
-        if (length(covarList) > 0) {
-          stopifnot(all(sapply(covarList, nrow) == self$dimension[1]),
-                    all(sapply(covarList, ncol) == self$dimension[2]))
-        }
-        mu <- private$tau[[1]] %*% private$theta$mean %*% t(private$tau[[2]])
-        if (length(self$covList) > 0) mu <- private$invlink(private$link(mu) + self$covarEffect)
-        mu
+      #' @description method to select a specific model among the ones fitted during the optimization.
+      #'  Fields of the current SBM_fit will be updated accordingly.
+      #' @param index integer, the index of the model to be selected (row number in storedModels)
+      setModel = function(index) {
+        stopifnot(!is.null(private$BMobject))
+        models <- self$storedModels
+        stopifnot(index %in% seq.int(nrow(models)))
+        private$import_from_BM(models$indexModel[index])
+        self$reorder()
       },
       #' @description permute group labels by order of decreasing probability
       reorder = function() {
-        oRow <- order(self$connectParam$mean %*% self$blockProp$col, decreasing = TRUE)
-        oCol <- order(self$blockProp$row %*% self$connectParam$mean, decreasing = TRUE)
+        oRow <- order(private$theta$mean %*% private$pi[[2]], decreasing = TRUE)
+        oCol <- order(private$pi[[1]] %*% private$theta$mean, decreasing = TRUE)
         private$pi[[1]] <- private$pi[[1]][oRow]
         private$pi[[2]] <- private$pi[[2]][oCol]
-        private$theta$mean <- private$theta$mean[oRow, oCol]
-        private$tau[[1]] <- private$tau[[1]][, oRow, drop = FALSE]
-        private$tau[[2]] <- private$tau[[2]][, oCol, drop = FALSE]
+        private$theta$mean <- private$theta$mean[oRow, oCol, drop = FALSE]
+        private$Z[[1]] <- private$Z[[1]][, oRow, drop = FALSE]
+        private$Z[[2]] <- private$Z[[2]][, oCol, drop = FALSE]
       },
       #' @description show method
       #' @param type character used to specify the type of SBM
-      show = function(type = "Fit of a Bipartite Stochastic Block Model") super$show(type)
+      show = function(type = "Fit of a Bipartite Stochastic Block Model"){
+        super$show(type)
+        cat("* Additional fields\n")
+        cat("  $probMemberships, $loglik, $ICL, $storedModels, \n")
+        cat("* Additional methods \n")
+        cat("  predict, fitted, $setModel, $reorder \n")
+      }
     ),
     active = list(
-      #' @field nbNodes vector of size 2: number of nodes (rows, columns)
-      nbNodes     = function(value) {private$dim},
-      #' @field nbBlocks vector of size 2: number of blocks (rows, columns)
-      nbBlocks    = function(value) {sapply(private$pi, length)},
-      #' @field nbDyads number of dyads (potential edges in the network)
-      nbDyads     = function(value) {private$dim[1] * private$dim[2]},
-      #' @field nbConnectParam number of parameter used for the connectivity
-      nbConnectParam = function(value) {self$nbBlocks[1]*self$nbBlocks[2]},
-      #' @field memberships list of size 2: vector of memberships in row, in column.
-      memberships = function(value) {lapply(private$tau, as_clustering)},
+      #' @field loglik double: approximation of the log-likelihood (variational lower bound) reached
+      loglik = function(value) {private$J},
+      #' @field ICL double: value of the integrated classification log-likelihood
+      ICL    = function(value) {private$vICL},
       #' @field penalty double, value of the penalty term in ICL
-      penalty  = function(value) {(self$nbConnectParam + self$nbCovariates) * log(self$nbDyads) + (self$nbBlocks[1]-1) * log(self$nbNodes[1]) + (self$nbBlocks[2]-1) * log(self$nbNodes[2])},
+      penalty  = function(value) {(self$nbConnectParam + self$nbCovariates) * log(self$nbDyads) + (self$nbBlocks[1]-1) * log(private$dim[1]) + (self$nbBlocks[2]-1) * log(private$dim[2])},
       #' @field entropy double, value of the entropy due to the clustering distribution
-      entropy  = function(value) {-sum(.xlogx(private$tau[[1]]))-sum(.xlogx(private$tau[[2]]))},
+      entropy  = function(value) {-sum(.xlogx(private$Z[[1]]))-sum(.xlogx(private$Z[[2]]))},
       #' @field storedModels data.frame of all models fitted (and stored) during the optimization
       storedModels = function(value) {
         rowBlocks <- c(0, unlist(sapply(private$BMobject$memberships, function(m) ncol(m$Z1))))
         colBlocks <- c(0, unlist(sapply(private$BMobject$memberships, function(m) ncol(m$Z2))))
         nbConnectParam <- c(NA, unlist(sapply(private$BMobject$model_parameters, function(param) param$n_parameters)))
-        data.frame(
+        U <- data.frame(
+          indexModel = rowBlocks + colBlocks,
           nbParams  = nbConnectParam + rowBlocks + colBlocks - 2,
           rowBlocks = rowBlocks,
           colBlocks = colBlocks,
@@ -125,6 +177,7 @@ BipartiteSBM_fit <-
           ICL       = private$BMobject$ICL,
           loglik    = private$BMobject$PL
         )
+        U[!is.na(U$nbParams), , drop = FALSE]
       }
     )
   )
