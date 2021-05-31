@@ -1,3 +1,7 @@
+# sbm 0.4.2
+
+* minor changes (encoding)
+
 # sbm 0.4.1
 
 * advanced plotting functions for multilayer/multiplex SBM
