@@ -36,7 +36,7 @@ load('resMultipartiteEcological.rda')
 ## ----MBM, echo = TRUE, eval = FALSE-------------------------------------------
 #  estimOptions = list(initBM = FALSE)
 #  listSBM <- list(PlantFlovis, PlantAnt, PlantBird)
-#  myMSBM <- estimateMultipartiteSBM(listSBM,estimOptions)
+#  myMSBM <- estimateMultipartiteSBM(listSBM, estimOptions)
 
 ## ----MBM what-----------------------------------------------------------------
 myMSBM

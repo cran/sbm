@@ -19,8 +19,11 @@ netA = defineSBM(A,model="bernoulli",dimLabels = "country")
 netB = defineSBM(B,model="bernoulli",dimLabels = "country")
 plotMyMultiplexMatrix(list(netA,netB))
 
-## -----------------------------------------------------------------------------
-MultiplexFitIndep = estimateMultiplexSBM(list(netA,netB),dependent = FALSE)
+## ---- echo = FALSE, results='hide'--------------------------------------------
+MultiplexFitIndep <- readRDS("Multiplex_allianceNwar_case_study.rds")
+
+## ---- eval = FALSE------------------------------------------------------------
+#  MultiplexFitIndep = estimateMultiplexSBM(list(netA,netB), dependent = FALSE, estimOptions = list(verbosity=0))
 
 ## -----------------------------------------------------------------------------
 clust_country_indep = MultiplexFitIndep$memberships[[1]]
