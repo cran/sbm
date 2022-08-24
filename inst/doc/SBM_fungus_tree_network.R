@@ -18,11 +18,11 @@ str(fungusTreeNetwork, max.level = 1)
 tree_tree_binary <- 1 * (fungusTreeNetwork$tree_tree != 0)
 
 ## ----tree_tree_binary network plot data---------------------------------------
-plotMyMatrix(tree_tree_binary, dimLabels = list(row = 'tree', col = 'tree') )
+plotMyMatrix(tree_tree_binary, dimLabels =c('tree'))
 
 ## ----simpleSBM----------------------------------------------------------------
 mySimpleSBM <- tree_tree_binary %>% 
-  estimateSimpleSBM("bernoulli", dimLabels = 'tree', estimOptions = list(verbosity = 0, plot = FALSE))
+  estimateSimpleSBM("bernoulli", dimLabels = 'tree', estimOptions = list(verbosity = 1, plot = TRUE))
 
 ## ----simpleSBMfit-------------------------------------------------------------
 class(mySimpleSBM)
@@ -34,7 +34,7 @@ mySimpleSBM$nbNodes
 mySimpleSBM$nbCovariates
 
 ## ----simpleSBMfit plot1-------------------------------------------------------
-plot(mySimpleSBM, type = "data", dimLabels  = list(row = 'tree', col= 'tree'))
+plot(mySimpleSBM, type = "data", dimLabels  = c('tree'))
 
 ## ----simpleSBMfit plot2-------------------------------------------------------
 plot(mySimpleSBM, type = "expected")
@@ -60,7 +60,7 @@ mySimpleSBM$setModel(5)
 
 ## ----tree_tree network plot data----------------------------------------------
 tree_tree <- fungusTreeNetwork$tree_tree
-plotMyMatrix(tree_tree, dimLabels = list(row = 'tree', col = 'tree'))
+plotMyMatrix(tree_tree, dimLabels = c('tree'))
 
 ## ----simpleSBM Poisson--------------------------------------------------------
 mySimpleSBMPoisson <- tree_tree %>% 
@@ -76,10 +76,10 @@ mySimpleSBMPoisson$nbNodes
 mySimpleSBMPoisson$nbCovariates
 
 ## ----simpleSBMfitPoisson plot1------------------------------------------------
-plot(mySimpleSBMPoisson, type = "data", dimLabels = list(row = 'tree', col= 'tree'))
+plot(mySimpleSBMPoisson, type = "data", dimLabels =c('tree'))
 
 ## ----simpleSBMfitPoisson plot2------------------------------------------------
-plot(mySimpleSBMPoisson, type = "expected", dimLabels = list(row = 'tree', col= 'tree'))
+plot(mySimpleSBMPoisson, type = "expected", dimLabels = c('tree'))
 
 ## ----simpleSBMfitPoisson plotmeso---------------------------------------------
 plot(mySimpleSBMPoisson, type = "meso")
@@ -112,12 +112,12 @@ mySimpleSBMCov$covarParam
 coef(mySimpleSBMCov, 'covariates')
 
 ## ----simpleSBMfitPoisson covar fitted, results='hide'-------------------------
-fitted(mySimpleSBMCov)
-predict(mySimpleSBMCov)
-predict(mySimpleSBMCov, fungusTreeNetwork$covar_tree)
+#fitted(mySimpleSBMCov)
+#predict(mySimpleSBMCov)
+#predict(mySimpleSBMCov, fungusTreeNetwork$covar_tree)
 
 ## ----plot incidence-----------------------------------------------------------
-plotMyMatrix(fungusTreeNetwork$fungus_tree, dimLabels = list(row = 'fungis', col= 'tree'))
+plotMyMatrix(fungusTreeNetwork$fungus_tree, dimLabels = c(row = 'fungis', col= 'tree'))
 
 ## ----tree_fungi_bipartite network---------------------------------------------
 myBipartiteSBM <- 

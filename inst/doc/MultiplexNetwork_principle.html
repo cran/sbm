@@ -12,11 +12,23 @@
 
 <meta name="author" content="team großBM" />
 
-<meta name="date" content="2021-06-09" />
+<meta name="date" content="2022-08-24" />
 
 <title>Stochastic Block Models for Multiplex networks</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -26,6 +38,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -109,13 +122,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -149,7 +169,187 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -161,38 +361,46 @@ div.csl-indent {
 
 
 
-<h1 class="title toc-ignore">Stochastic Block Models for Multiplex networks</h1>
+<h1 class="title toc-ignore">Stochastic Block Models for Multiplex
+networks</h1>
 <h3 class="subtitle">Principle and illustration</h3>
 <h4 class="author">team großBM</h4>
-<h4 class="date">2021-06-09</h4>
+<h4 class="date">2022-08-24</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#preliminaries">Preliminaries</a>
+<li><a href="#preliminaries" id="toc-preliminaries">Preliminaries</a>
 <ul>
-<li><a href="#requirements">Requirements</a></li>
+<li><a href="#requirements" id="toc-requirements">Requirements</a></li>
 </ul></li>
-<li><a href="#multiplex-network-data">Multiplex network data</a></li>
-<li><a href="#stochastic-block-models-for-multiplex-networks">Stochastic Block models for multiplex networks</a>
+<li><a href="#multiplex-network-data" id="toc-multiplex-network-data">Multiplex network data</a></li>
+<li><a href="#stochastic-block-models-for-multiplex-networks" id="toc-stochastic-block-models-for-multiplex-networks">Stochastic Block
+models for multiplex networks</a>
 <ul>
-<li><a href="#general-formulation-of-the-model">General formulation of the model</a></li>
-<li><a href="#dependent-and-independent-layers-conditionally-to-z.">Dependent and independent layers conditionally to <span class="math inline">\(Z\)</span>.</a></li>
-<li><a href="#bipartite-multiplex-networks.">Bipartite multiplex networks.</a></li>
-<li><a href="#inference">Inference</a></li>
+<li><a href="#general-formulation-of-the-model" id="toc-general-formulation-of-the-model">General formulation of the
+model</a></li>
+<li><a href="#dependent-and-independent-layers-conditionally-to-z." id="toc-dependent-and-independent-layers-conditionally-to-z.">Dependent
+and independent layers conditionally to <span class="math inline">\(Z\)</span>.</a></li>
+<li><a href="#bipartite-multiplex-networks." id="toc-bipartite-multiplex-networks.">Bipartite multiplex
+networks.</a></li>
+<li><a href="#inference" id="toc-inference">Inference</a></li>
 </ul></li>
-<li><a href="#implementation">Implementation</a>
+<li><a href="#implementation" id="toc-implementation">Implementation</a>
 <ul>
-<li><a href="#data-simulation">Data simulation</a></li>
-<li><a href="#inference-1">Inference</a></li>
+<li><a href="#data-simulation" id="toc-data-simulation">Data
+simulation</a></li>
+<li><a href="#inference-1" id="toc-inference-1">Inference</a></li>
 </ul></li>
-<li><a href="#references">References</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </div>
 
 <div id="preliminaries" class="section level2">
 <h2>Preliminaries</h2>
-<p>This vignette illustrates the use of the <code>estimateMultiplexSBM</code> function and the methods accompanying the R6 classes <code>multiplexSBMfit</code>.</p>
+<p>This vignette illustrates the use of the
+<code>estimateMultiplexSBM</code> function and the methods accompanying
+the R6 classes <code>multiplexSBMfit</code>.</p>
 <div id="requirements" class="section level3">
 <h3>Requirements</h3>
 <p>The packages required for the analysis are <strong>sbm</strong>.</p>
@@ -201,57 +409,110 @@ div.csl-indent {
 </div>
 <div id="multiplex-network-data" class="section level2">
 <h2>Multiplex network data</h2>
-<p>Multiplex networks refer to a collection of networks involving the same sets of nodes, each network corresponding to a give type of interaction. Each network may also be referred as a layer. Such a network is studied in <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barbillon et al.</a> (<a href="#ref-multiplexSBM" role="doc-biblioref">2017</a>)</span> where the nodes are researchers and two networks are provided:</p>
+<p>Multiplex networks refer to a collection of networks involving the
+same sets of nodes, each network corresponding to a give type of
+interaction. Each network may also be referred as a layer. Such a
+network is studied in <span class="citation">Barbillon et al. (<a href="#ref-multiplexSBM" role="doc-biblioref">2017</a>)</span> where the
+nodes are researchers and two networks are provided:</p>
 <pre><code>* a network representing the relations of advices between researchers,
 * a network representing the exchanges between the laboratories the researchers belong to. </code></pre>
-<p>In <span class="citation"><a href="#ref-multiplexKefi" role="doc-biblioref">Kéfi</a> (<a href="#ref-multiplexKefi" role="doc-biblioref">2016</a>)</span>, the nodes are species and each network corresponds to a type of ecological relation, namely trophic links, negative non trophic links and positive non trophic links.</p>
+<p>In <span class="citation">Kéfi (<a href="#ref-multiplexKefi" role="doc-biblioref">2016</a>)</span>, the nodes are species and each
+network corresponds to a type of ecological relation, namely trophic
+links, negative non trophic links and positive non trophic links.</p>
 </div>
 <div id="stochastic-block-models-for-multiplex-networks" class="section level2">
 <h2>Stochastic Block models for multiplex networks</h2>
 <div id="general-formulation-of-the-model" class="section level3">
 <h3>General formulation of the model</h3>
-<p>We give here a few details on Stochastic Block Models (SBM) for multiplex networks.</p>
-<p>Assume that one studies <span class="math inline">\(n\)</span> nodes and observes <span class="math inline">\(L\)</span> types of links, resulting into <span class="math inline">\(L\)</span> matrices <span class="math inline">\((X^\ell_{ij})_{i,j = 1,\dots,n}\)</span>, $= 1, , L. Block models assume that the nodes are divided into <span class="math inline">\(K\)</span> clusters, this clustering being encoded into the latent variables <span class="math inline">\((Z_i)_{i=1,\dots,n}\)</span> such that <span class="math inline">\(Z_i = k\)</span> if node <span class="math inline">\(i\)</span> belongs to cluster <span class="math inline">\(k\)</span>.</p>
-<p>The relations between nodes <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are driven by the clusters they belong to :</p>
-<p><span class="math display">\[ (X^1_{ij}, \dots,X^L_{ij})  | Z_i = q, Z_j = r \sim_{ind} \mathcal{F}(\cdot;\theta_{qr})\]</span> where <span class="math inline">\(\mathcal{F}\)</span> is a <span class="math inline">\(L\)</span> dimensional probability distribution adapted to the data.</p>
+<p>We give here a few details on Stochastic Block Models (SBM) for
+multiplex networks.</p>
+<p>Assume that one studies <span class="math inline">\(n\)</span> nodes
+and observes <span class="math inline">\(L\)</span> types of links,
+resulting into <span class="math inline">\(L\)</span> matrices <span class="math inline">\((X^\ell_{ij})_{i,j = 1,\dots,n}\)</span>, $= 1, ,
+L. Block models assume that the nodes are divided into <span class="math inline">\(K\)</span> clusters, this clustering being encoded
+into the latent variables <span class="math inline">\((Z_i)_{i=1,\dots,n}\)</span> such that <span class="math inline">\(Z_i = k\)</span> if node <span class="math inline">\(i\)</span> belongs to cluster <span class="math inline">\(k\)</span>.</p>
+<p>The relations between nodes <span class="math inline">\(i\)</span>
+and <span class="math inline">\(j\)</span> are driven by the clusters
+they belong to :</p>
+<p><span class="math display">\[ (X^1_{ij}, \dots,X^L_{ij})  | Z_i = q,
+Z_j = r \sim_{ind} \mathcal{F}(\cdot;\theta_{qr})\]</span> where <span class="math inline">\(\mathcal{F}\)</span> is a <span class="math inline">\(L\)</span> dimensional probability distribution
+adapted to the data.</p>
 <p><em>Examples</em></p>
 <ul>
-<li>If all the networks are binary (<span class="math inline">\(X^\ell_{ij} \in \{0,1\}\)</span>) then <span class="math inline">\(\mathcal{F}\)</span> is a <span class="math inline">\(L\)</span>-variate Bernoulli distribution and <span class="math display">\[ \theta_{qr} = (p^{\omega}_{qr}, \omega \in \{0,1\}^L)\]</span> with <span class="math inline">\(p^{\omega_\ell}_{qr} \in [0,1]\)</span>.<br />
+<li>If all the networks are binary (<span class="math inline">\(X^\ell_{ij} \in \{0,1\}\)</span>) then <span class="math inline">\(\mathcal{F}\)</span> is a <span class="math inline">\(L\)</span>-variate Bernoulli distribution and
+<span class="math display">\[ \theta_{qr} = (p^{\omega}_{qr}, \omega \in
+\{0,1\}^L)\]</span> with <span class="math inline">\(p^{\omega_\ell}_{qr} \in [0,1]\)</span>.<br />
 </li>
-<li>If all the networks are weighted with real values (<span class="math inline">\(X^\ell_{ij} \in \mathbb{R}\)</span>) then <span class="math inline">\(\mathcal{F}\)</span> could be a <span class="math inline">\(L\)</span>-dimensional Gaussian distribution and <span class="math display">\[ \theta_{qr} = (\mu_{qr},\Sigma_{qr})\]</span> with <span class="math inline">\(\mu_{qr} \in \mathbb{R}^L\)</span>, <span class="math inline">\(\Sigma_{qr}\)</span> a <span class="math inline">\(L\)</span> covariance matrix.</li>
+<li>If all the networks are weighted with real values (<span class="math inline">\(X^\ell_{ij} \in \mathbb{R}\)</span>) then <span class="math inline">\(\mathcal{F}\)</span> could be a <span class="math inline">\(L\)</span>-dimensional Gaussian distribution and
+<span class="math display">\[ \theta_{qr} =
+(\mu_{qr},\Sigma_{qr})\]</span> with <span class="math inline">\(\mu_{qr} \in \mathbb{R}^L\)</span>, <span class="math inline">\(\Sigma_{qr}\)</span> a <span class="math inline">\(L\)</span> covariance matrix.</li>
 </ul>
-<p>Note that these two models assume that the <span class="math inline">\(L\)</span> interactions are dependent <strong>conditionally to the clustering</strong>. The integration against the latent variables <span class="math inline">\(Z\)</span> (clustering) implies that the interactions between two pairs of nodes are also dependent.</p>
-<p>A collection of models are implemented in our package <code>sbm</code>. These models can be classified into two groups : either the layers are dependent conditionally to <span class="math inline">\(Z\)</span> or not.</p>
+<p>Note that these two models assume that the <span class="math inline">\(L\)</span> interactions are dependent
+<strong>conditionally to the clustering</strong>. The integration
+against the latent variables <span class="math inline">\(Z\)</span>
+(clustering) implies that the interactions between two pairs of nodes
+are also dependent.</p>
+<p>A collection of models are implemented in our package
+<code>sbm</code>. These models can be classified into two groups :
+either the layers are dependent conditionally to <span class="math inline">\(Z\)</span> or not.</p>
 </div>
 <div id="dependent-and-independent-layers-conditionally-to-z." class="section level3">
 <h3>Dependent and independent layers conditionally to <span class="math inline">\(Z\)</span>.</h3>
 <p>We consider conditional dependence in a few numbers of models :</p>
 <ul>
-<li><p>for <span class="math inline">\(L=2\)</span> Binary networks (Bernoulli)</p></li>
-<li><p>For any number <span class="math inline">\(L\)</span> of layer with Gaussian multivariate distributions but restricted to <span class="math inline">\(\Sigma_{qr} = \Sigma\)</span> (same covariance in any blocks)</p></li>
+<li><p>for <span class="math inline">\(L=2\)</span> Binary networks
+(Bernoulli)</p></li>
+<li><p>For any number <span class="math inline">\(L\)</span> of layer
+with Gaussian multivariate distributions but restricted to <span class="math inline">\(\Sigma_{qr} = \Sigma\)</span> (same covariance in
+any blocks)</p></li>
 </ul>
-<p>In the Binary case, the number of parameters of dependent layers explodes with the number of layers <span class="math inline">\(L\)</span> and the results become difficult to understand. As a consequence, we also implemented inference methods for independent layers conditionally to the clusterings for any number of layers.</p>
-<p>In the case of independent layers conditionally to the clusters, we assume that for any <span class="math inline">\(\ell,i,j\)</span>, <span class="math display">\[ X^\ell_{ij}  | Z_i = q, Z_j = r \sim_{ind} \mathcal{F}_\ell(\cdot;\theta^\ell_{qr})\]</span> where any <span class="math inline">\(\mathcal{F}_\ell\)</span> can be Bernoulli, Poisson, Gaussian or Zero Inflated Gaussian.</p>
+<p>In the Binary case, the number of parameters of dependent layers
+explodes with the number of layers <span class="math inline">\(L\)</span> and the results become difficult to
+understand. As a consequence, we also implemented inference methods for
+independent layers conditionally to the clusterings for any number of
+layers.</p>
+<p>In the case of independent layers conditionally to the clusters, we
+assume that for any <span class="math inline">\(\ell,i,j\)</span>, <span class="math display">\[ X^\ell_{ij}  | Z_i = q, Z_j = r \sim_{ind}
+\mathcal{F}_\ell(\cdot;\theta^\ell_{qr})\]</span> where any <span class="math inline">\(\mathcal{F}_\ell\)</span> can be Bernoulli,
+Poisson, Gaussian or Zero Inflated Gaussian.</p>
 </div>
 <div id="bipartite-multiplex-networks." class="section level3">
 <h3>Bipartite multiplex networks.</h3>
-<p>All the previous models can be extended to bipartite networks (i.e. when the nodes in row are different from the nodes in column). In that case, two clusterings are introduced. Assume that the row (respectively column) nodes are divided into <span class="math inline">\(K_1\)</span> (resp. <span class="math inline">\(K_2\)</span>) clusters, and denote <span class="math inline">\((Z^1_i)_{i=1,\dots,n}\)</span> (resp. <span class="math inline">\((Z^2_j)_{i=j,\dots,p}\)</span> ) the row (resp. col) clusterings.</p>
-<p>The relations between nodes <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are driven by the clusters they belong to :</p>
-<p><span class="math display">\[ (X^1_{ij}, \dots,X^L_{ij})  | Z^1_i = q, Z^2_j = r \sim_{ind} \mathcal{F}(\cdot;\theta_{qr})\]</span></p>
+<p>All the previous models can be extended to bipartite networks
+(i.e. when the nodes in row are different from the nodes in column). In
+that case, two clusterings are introduced. Assume that the row
+(respectively column) nodes are divided into <span class="math inline">\(K_1\)</span> (resp. <span class="math inline">\(K_2\)</span>) clusters, and denote <span class="math inline">\((Z^1_i)_{i=1,\dots,n}\)</span> (resp. <span class="math inline">\((Z^2_j)_{i=j,\dots,p}\)</span> ) the row (resp.
+col) clusterings.</p>
+<p>The relations between nodes <span class="math inline">\(i\)</span>
+and <span class="math inline">\(j\)</span> are driven by the clusters
+they belong to :</p>
+<p><span class="math display">\[ (X^1_{ij}, \dots,X^L_{ij})  | Z^1_i =
+q, Z^2_j = r \sim_{ind} \mathcal{F}(\cdot;\theta_{qr})\]</span></p>
 </div>
 <div id="inference" class="section level3">
 <h3>Inference</h3>
-<p>The maximization of the likelihood is obtained via a Variational version of the EM algorithm. The number of blocks is chosen via a penalized likelihood criterion (ICL).<br />
-See <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barbillon et al.</a> (<a href="#ref-multiplexSBM" role="doc-biblioref">2017</a>)</span> for details.</p>
-<p>Note that, in the case of dependent networks, the inference is performed via the <code>blockmodels</code> package, while the <code>GREMLINS</code> package is used in the case of independent networks. As a consequence, the <code>estimOptions</code> arguments are slightly different.</p>
+<p>The maximization of the likelihood is obtained via a Variational
+version of the EM algorithm. The number of blocks is chosen via a
+penalized likelihood criterion (ICL).<br />
+See <span class="citation">Barbillon et al. (<a href="#ref-multiplexSBM" role="doc-biblioref">2017</a>)</span> for details.</p>
+<p>Note that, in the case of dependent networks, the inference is
+performed via the <code>blockmodels</code> package, while the
+<code>GREMLINS</code> package is used in the case of independent
+networks. As a consequence, the <code>estimOptions</code> arguments are
+slightly different.</p>
 </div>
 </div>
 <div id="implementation" class="section level2">
 <h2>Implementation</h2>
 <div id="data-simulation" class="section level3">
 <h3>Data simulation</h3>
-<p>The function <code>mySampleMultiplexSBM</code> supplies a method to simulate multiplex networks. The argument <code>dependent</code> is set to <code>FALSE</code> by default (assuming independent layers conditionally to the clusterings).</p>
-<p>We simulate hereafter <span class="math inline">\(2\)</span> simple (i.e. non bipartite) layers. The corresponding matrices can be plotted using the function <code>plotMyMultpiplexMatrix</code>.</p>
+<p>The function <code>mySampleMultiplexSBM</code> supplies a method to
+simulate multiplex networks. The argument <code>dependent</code> is set
+to <code>FALSE</code> by default (assuming independent layers
+conditionally to the clusterings).</p>
+<p>We simulate hereafter <span class="math inline">\(2\)</span> simple
+(i.e. non bipartite) layers. The corresponding matrices can be plotted
+using the function <code>plotMyMultpiplexMatrix</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nbLayers <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
 <p><strong>Examples</strong></p>
 <ul>
@@ -278,7 +539,9 @@ See <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barb
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(listSBM_PB) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bernoulli&quot;</span>,<span class="st">&quot;Poisson&quot;</span>)  </span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMyMultiplexMatrix</span>(listSBM_PB)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>The resulting object is a list of SBM objects (of the SBM class). To build such an object from an observed matrix use the function <code>defineSBM</code>.</p>
+<p>The resulting object is a list of SBM objects (of the SBM class). To
+build such an object from an observed matrix use the function
+<code>defineSBM</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>listSBM_PB</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $Bernoulli</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fit of a Simple Stochastic Block Model -- bernoulli variant</span></span>
@@ -378,7 +641,11 @@ See <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barb
 </div>
 <div id="inference-1" class="section level3">
 <h3>Inference</h3>
-<p>We are now able to perform inference on the each multiplex network (search of the “best” number of clusters in terms of ICL). To do so, we have to chose the model, i.e. the distribution used in each matrix and the dependence or independence between matrices conditionally to the clusters.</p>
+<p>We are now able to perform inference on the each multiplex network
+(search of the “best” number of clusters in terms of ICL). To do so, we
+have to chose the model, i.e. the distribution used in each matrix and
+the dependence or independence between matrices conditionally to the
+clusters.</p>
 <ul>
 <li>2 directed Layers : one Poisson, one Bernoulli and two clusters</li>
 </ul>
@@ -387,12 +654,14 @@ See <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barb
 <pre><code>#&gt;   indexModel nbParams nbBlocks       ICL    loglik
 #&gt; 1          1        9        2 -1926.202 -1894.847
 #&gt; 2          2        2        1 -2362.585 -2355.207</code></pre>
-<p>One can now plot the reorganized matrices and the predicted values.</p>
+<p>One can now plot the reorganized matrices and the predicted
+values.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_PB)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_PB,<span class="at">type=</span><span class="st">&#39;expected&#39;</span>)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>One can also compare the estimated clusters to the simulated clusters. We recover the clusters perfectly.</p>
+<p>One can also compare the estimated clusters to the simulated
+clusters. We recover the clusters perfectly.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>All <span class="ot">&lt;-</span> <span class="fu">plotAlluvial</span>(<span class="fu">list</span>(<span class="at">simulated  =</span> mySampleMultiplexSBM_PB<span class="sc">$</span>memberships<span class="sc">$</span>Individuals, <span class="at">estim=</span>res_PB<span class="sc">$</span>memberships<span class="sc">$</span>Individuals))</span></code></pre></div>
 <p><img src="data:image/png;base64,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PXsWQZBHHnkk/u1HH32EIMipU6fYpAO2bt26119/feBtNTU1mzdvjn+9YcOGG2+8kWXZYDBoNpt/97vfDbzt3nvvzc/PZ1k2fsPp3r17469HIpHi4mIIWPYZZR8YZb8d2IXYlPbhdCQ4RayoqNDr9b/4xS/eeustm822Zs2a559/PuHRb968efEv4lcAFyxYMPhbmh7HI9g++BbIXmYAAALiSURBVOCD+++/PxgMNjU1vfnmmxcvXhx+D+np06ddLtc111zj+pclS5b09fV1dXUdO3bMZDINnHziOL5+/frktw4yxSj7QPL77WAc7sMJJQiY2Ww+ePBgRUXFxo0bi4qK5s6dO9IInlwuH/wthmEp13HkyJHZs2cbDIbrr79+9+7dCUfY29vbEQSpq6uz/MtPf/pTBEG8Xq/dbi8u/tFzccrKylIuBkjWKPtA8vvtYBzuwwklHuSYO3fu3r173W73p59+mp+fv379+nPnznGyPa/XO/xFj8ezdOnSyy+/3G639/T0NDQ0JIxHPHV9fX1DjsIzZ84sLi7u7e0d/GaXy8VJwUBSRtkHED7325QlCNiuXbtqampCoZBarV6+fPlrr71G03RbW1uKG5DJBhpuhcPho0ePDn/P8ePHSZL85S9/mZ+fjyBIJBLp6OgY/rba2locx/ft2zfwypNPPrls2TIEQebPn+92uz/++OP46zRN7969O7WCgZSNsg9wu99yJcF1sDlz5rS3t996660bN24MBALbtm2zWCzz589PbQOzZs3aunVrZWVleXn5M88843Q6h79nypQpSqXy8ccff/jhh91u99NPP+33+5ubm10ul9lsViqVLS0tjY2Nc+bM2bRp08aNG20229y5c7/44ov6+vqXXnoJQZAlS5YsXbr0jjvu2LJlS1lZ2euvvx4KhVIrGEhZXl7eSPvAKPvt4F1I6IoTDn3s27fv0ksv1Wq1Fovluuuua2pqSjgCU19fH/+aoigEQT744IPBAzLxpZqbm5csWRKfiTxv3rwHH3ww4Sji+++/X1NTo9Vq58+fv2/fvu3bt5tMpieffJJl2S+++KKyslKv1/t8PoZh6uvra2trNRrN9OnTBw88BgKB++67r7S01Gq13nfffR999BGMImalUfaBkfbbwbtQCvtwOgSaTc+ybH9/f/wMEICJA25XAYBHcLsKADyCgAHAo/8P/xDrLGNLgscAAAAASUVORK5CYII=" /><!-- --></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>All</span>
@@ -447,10 +716,17 @@ See <span class="citation"><a href="#ref-multiplexSBM" role="doc-biblioref">Barb
 <h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-multiplexSBM" class="csl-entry">
-Barbillon, Pierre, Sophie Donnet, Emmanuel Lazega, and Avner Bar-Hen. 2017. <span>“<span class="nocase">Stochastic block models for multiplex networks: an application to a multilevel network of researchers</span>.”</span> <em>Journal of the Royal Statistical Society Series A</em> 180 (1): 295–314. <a href="https://ideas.repec.org/a/bla/jorssa/v180y2017i1p295-314.html">https://ideas.repec.org/a/bla/jorssa/v180y2017i1p295-314.html</a>.
+Barbillon, Pierre, Sophie Donnet, Emmanuel Lazega, and Avner Bar-Hen.
+2017. <span>“<span class="nocase">Stochastic block models for multiplex
+networks: an application to a multilevel network of
+researchers</span>.”</span> <em>Journal of the Royal Statistical Society
+Series A</em> 180 (1): 295–314. <a href="https://ideas.repec.org/a/bla/jorssa/v180y2017i1p295-314.html">https://ideas.repec.org/a/bla/jorssa/v180y2017i1p295-314.html</a>.
 </div>
 <div id="ref-multiplexKefi" class="csl-entry">
-Kéfi, Vincent AND Wieters, Sonia AND Miele. 2016. <span>“How Structured Is the Entangled Bank? The Surprisingly Simple Organization of Multiplex Ecological Networks Leads to Increased Persistence and Resilience.”</span> <em>PLOS Biology</em> 14 (8): 1–21. <a href="https://doi.org/10.1371/journal.pbio.1002527">https://doi.org/10.1371/journal.pbio.1002527</a>.
+Kéfi, Vincent AND Wieters, Sonia AND Miele. 2016. <span>“How Structured
+Is the Entangled Bank? The Surprisingly Simple Organization of Multiplex
+Ecological Networks Leads to Increased Persistence and
+Resilience.”</span> <em>PLOS Biology</em> 14 (8): 1–21. <a href="https://doi.org/10.1371/journal.pbio.1002527">https://doi.org/10.1371/journal.pbio.1002527</a>.
 </div>
 </div>
 </div>

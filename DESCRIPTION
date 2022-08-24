@@ -1,6 +1,6 @@
 Package: sbm
 Title: Stochastic Blockmodels
-Version: 0.4.3
+Version: 0.4.4
 Authors@R: 
   c(person(given = "Julien", family = "Chiquet", role = c("aut", "cre"),
            email = "julien.chiquet@inrae.fr",
@@ -22,7 +22,7 @@ BugReports: https://github.com/GrossSBM/sbm/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Suggests: testthat, spelling, knitr, rmarkdown, aricode, covr
 Language: en-US
 Imports: alluvial, magrittr, dplyr, purrr, blockmodels, R6, Rcpp,
@@ -40,11 +40,11 @@ LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 NeedsCompilation: yes
-Packaged: 2021-06-09 16:42:06 UTC; jchiquet
+Packaged: 2022-08-24 17:04:52 UTC; jchiquet
 Author: Julien Chiquet [aut, cre] (<https://orcid.org/0000-0002-3629-3429>),
   Sophie Donnet [aut] (<https://orcid.org/0000-0003-4370-7316>),
   großBM team [ctb],
   Pierre Barbillon [aut] (<https://orcid.org/0000-0002-7766-7693>)
 Maintainer: Julien Chiquet <julien.chiquet@inrae.fr>
 Repository: CRAN
-Date/Publication: 2021-06-09 17:20:02 UTC
+Date/Publication: 2022-08-24 17:40:02 UTC
