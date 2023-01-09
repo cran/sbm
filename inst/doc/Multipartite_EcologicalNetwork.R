@@ -14,21 +14,21 @@ names(multipartiteEcologicalNetwork)
 
 ## ----transform dataset,  eval=TRUE--------------------------------------------
 Net <- multipartiteEcologicalNetwork
-type='bipartite'
-model = 'bernoulli'
+type = "bipartite"
+model = "bernoulli"
 directed = FALSE
-PlantFlovis = defineSBM(Net$Inc_plant_flovis, model,type,directed,
-                        dimLabels = c("Plants", "Flovis"))
-PlantAnt = defineSBM(Net$Inc_plant_ant,model,type,directed,
-                      dimLabels = c("Plants", "Ants"))
-PlantBird = defineSBM(Net$Inc_plant_bird,model,type,directed,
-                     dimLabels = c("Plants", "Birds"))
+PlantFlovis <- defineSBM(Net$Inc_plant_flovis, model, type, directed, dimLabels = c("Plants",
+    "Flovis"))
+PlantAnt <- defineSBM(Net$Inc_plant_ant, model, type, directed, dimLabels = c("Plants",
+    "Ants"))
+PlantBird <- defineSBM(Net$Inc_plant_bird, model, type, directed, dimLabels = c("Plants",
+    "Birds"))
 
 ## ----example of dataset, eval=TRUE--------------------------------------------
-PlantFlovis$netMatrix[1:2,1:2]
+PlantFlovis$netMatrix[1:2, 1:2]
 
 ## ----plot data----------------------------------------------------------------
-plotMyMultipartiteMatrix(list(PlantFlovis,PlantAnt,PlantBird))
+plotMyMultipartiteMatrix(list(PlantFlovis, PlantAnt, PlantBird))
 
 ## ----load result, echo = FALSE, eval = TRUE-----------------------------------
 load('resMultipartiteEcological.rda')
@@ -59,9 +59,10 @@ myMSBM$storedModels
 plot(myMSBM) 
 
 ## ----plot meso, eval = TRUE---------------------------------------------------
-plotOptions=list(vertex.size = c(12,6,4,4))
-plotOptions$vertex.shape = rep('circle',4)
-plotOptions$vertex.color = c('darkolivegreen3','darkgoldenrod2','salmon2','cadetblue2')
+plotOptions = list(vertex.size = c(12, 6, 4, 4))
+plotOptions$vertex.shape = rep("circle", 4)
+plotOptions$vertex.color = c("darkolivegreen3", "darkgoldenrod2", "salmon2",
+    "cadetblue2")
 plotOptions$edge.curved = 0.1
-plot(myMSBM,type = 'meso',plotOptions=plotOptions)
+plot(myMSBM, type = "meso", plotOptions = plotOptions)
 

@@ -12,7 +12,7 @@
 
 <meta name="author" content="team großBM" />
 
-<meta name="date" content="2022-08-24" />
+<meta name="date" content="2023-01-09" />
 
 <title>Stochastic Block Models for Multiplex networks</title>
 
@@ -31,23 +31,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
 </script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -65,55 +65,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -147,25 +146,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <style type="text/css">
-/* for pandoc --citeproc since 2.11 */
+
 div.csl-bib-body { }
 div.csl-entry {
-  clear: both;
+clear: both;
 }
 .hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+margin-left:2em;
+text-indent:-2em;
 }
 div.csl-left-margin {
-  min-width:2em;
-  float:left;
+min-width:2em;
+float:left;
 }
 div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
+margin-left:2em;
+padding-left:1em;
 }
 div.csl-indent {
-  margin-left: 2em;
+margin-left: 2em;
 }
 </style>
 
@@ -365,11 +364,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 networks</h1>
 <h3 class="subtitle">War and Alliance case study</h3>
 <h4 class="author">team großBM</h4>
-<h4 class="date">2022-08-24</h4>
+<h4 class="date">2023-01-09</h4>
 
 
 <div id="TOC">
 <ul>
+<li><a href="#preliminaries" id="toc-preliminaries">Preliminaries</a>
+<ul>
+<li><a href="#requirements" id="toc-requirements">Requirements</a></li>
+<li><a href="#data-set" id="toc-data-set">Data set</a></li>
+</ul></li>
 <li><a href="#data-manipulation" id="toc-data-manipulation">Data
 manipulation</a></li>
 <li><a href="#fitting-a-multiplex-sbm-model-where-the-two-layers-are-assumed-to-be-independent" id="toc-fitting-a-multiplex-sbm-model-where-the-two-layers-are-assumed-to-be-independent">Fitting
@@ -384,10 +388,25 @@ dependent</a>
 </ul>
 </div>
 
+<div id="preliminaries" class="section level2">
+<h2>Preliminaries</h2>
+<p>This vignette illustrates the use of the
+<code>estimateMultiplexSBM</code> function and the methods accompanying
+the R6 classes <code>multiplexSBMfit</code> on the <code>war</code> data
+set.</p>
+<div id="requirements" class="section level3">
+<h3>Requirements</h3>
+<p>The packages required for the analysis are <strong>sbm</strong> plus
+some others for data manipulation and representation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sbm)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(aricode)</span></code></pre></div>
+</div>
+<div id="data-set" class="section level3">
+<h3>Data set</h3>
 <p>The <code>war</code> data set comes in the <code>sbm</code>
 package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sbm)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;war&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;war&quot;</span>)</span></code></pre></div>
 <p>This data set contains a list of two networks
 (<code>belligerent</code> and <code>alliance</code>) where the nodes are
 countries; an edge in the network <code>belligerent</code> means that
@@ -396,32 +415,24 @@ the two countries have been at war at least once between years 1816 to
 countries have had a formal alliance between years 1816 and 2012. The
 network <code>belligerent</code> have less nodes since countries which
 have not been at war at all are not considered.</p>
-<p>These two networks were extracted from <a href="https://www.correlatesofwar.org/">https://www.correlatesofwar.org/</a>
+<p>These two networks were extracted from <a href="https://correlatesofwar.org/">https://correlatesofwar.org/</a>
 (see <span class="citation">Sarkees and Wayman (<a href="#ref-sarkees2010resort" role="doc-biblioref">2010</a>)</span> for
 war data, and <span class="citation">Gibler (<a href="#ref-gibler2008international" role="doc-biblioref">2008</a>)</span> for formal alliance). Version 4.0
 was used for war data and version 4.1 for formal alliance.</p>
+</div>
+</div>
 <div id="data-manipulation" class="section level1">
 <h1>Data manipulation</h1>
 <p>Since they don’t have the same size, we choose to only consider nodes
 (countries) which were at war with at least one other country. This
 corresponds to the first 83 nodes in the Alliance network.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;igraph&#39;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     decompose, spectrum</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:base&#39;:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     union</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">get.adjacency</span>(war<span class="sc">$</span>alliance))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as(&lt;dsCMatrix&gt;, &quot;dgCMatrix&quot;) is deprecated since Matrix 1.4-2; do as(., &quot;generalMatrix&quot;) instead</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> A[<span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">get.adjacency</span>(war<span class="sc">$</span>belligerent))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">get.adjacency</span>(war<span class="sc">$</span>alliance))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> A[<span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">get.adjacency</span>(war<span class="sc">$</span>belligerent))</span></code></pre></div>
 <p>We can start with a plot of this multiplex network:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>netA <span class="ot">=</span> <span class="fu">defineSBM</span>(A,<span class="at">model=</span><span class="st">&quot;bernoulli&quot;</span>,<span class="at">dimLabels =</span> <span class="st">&quot;country&quot;</span>) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>netB <span class="ot">=</span> <span class="fu">defineSBM</span>(B,<span class="at">model=</span><span class="st">&quot;bernoulli&quot;</span>,<span class="at">dimLabels =</span> <span class="st">&quot;country&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMyMultiplexMatrix</span>(<span class="fu">list</span>(netA,netB))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>netA <span class="ot">&lt;-</span> <span class="fu">defineSBM</span>(A, <span class="at">model =</span> <span class="st">&quot;bernoulli&quot;</span>, <span class="at">dimLabels =</span> <span class="st">&quot;country&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>netB <span class="ot">&lt;-</span> <span class="fu">defineSBM</span>(B, <span class="at">model =</span> <span class="st">&quot;bernoulli&quot;</span>, <span class="at">dimLabels =</span> <span class="st">&quot;country&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMyMultiplexMatrix</span>(<span class="fu">list</span>(netA, netB))</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="fitting-a-multiplex-sbm-model-where-the-two-layers-are-assumed-to-be-independent" class="section level1">
@@ -430,233 +441,236 @@ independent</h1>
 <p>We run the estimation of this multiplex model. By setting
 <code>dependent=FALSE</code>, we declare that we consider the two layers
 to be independent conditionally on the latent block variables.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitIndep <span class="ot">=</span> <span class="fu">estimateMultiplexSBM</span>(<span class="fu">list</span>(netA,netB), <span class="at">dependent =</span> <span class="cn">FALSE</span>, <span class="at">estimOptions =</span> <span class="fu">list</span>(<span class="at">verbosity=</span><span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitIndep <span class="ot">&lt;-</span> <span class="fu">estimateMultiplexSBM</span>(<span class="fu">list</span>(netA, netB), <span class="at">dependent =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimOptions =</span> <span class="fu">list</span>(<span class="at">verbosity =</span> <span class="dv">0</span>))</span></code></pre></div>
 <p>We can retrieve the clustering</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clust_country_indep <span class="ot">=</span> MultiplexFitIndep<span class="sc">$</span>memberships[[<span class="dv">1</span>]]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(clust_country_indep)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       United States of America                         Canada </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              1                              1 </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Belize                    El Salvador </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Colombia                        Ecuador </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bolivia                        Uruguay </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bahamas                           Cuba </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Haiti             Dominican Republic </span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Jamaica            Trinidad and Tobago </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Barbados                       Dominica </span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Grenada                      St. Lucia </span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; St. Vincent and the Grenadines              Antigua &amp; Barbuda </span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            St. Kitts and Nevis                         Mexico </span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Guatemala                       Honduras </span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Nicaragua                     Costa Rica </span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Panama                      Venezuela </span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Guyana                       Suriname </span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Peru                         Brazil </span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Paraguay                          Chile </span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Argentina                 United Kingdom </span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              4 </span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Netherlands                        Belgium </span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Luxembourg                         France </span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Spain                       Portugal </span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Germany        German Federal Republic </span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Poland                        Hungary </span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czech Republic                          Italy </span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Greece                         Norway </span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Denmark                        Iceland </span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bavaria     German Democratic Republic </span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Baden                   Wuerttemburg </span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Austria-Hungary                        Austria </span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czechoslovakia                       Slovakia </span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Malta                        Albania </span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Croatia                     Yugoslavia </span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         Bosnia and Herzegovina                         Cyprus </span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Bulgaria                        Moldova </span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Romania                         Russia </span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Estonia                         Latvia </span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Lithuania                        Ukraine </span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Belarus                        Armenia </span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Georgia                     Azerbaijan </span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Finland                         Sweden </span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Cape Verde          Sao Tome and Principe </span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Guinea-Bissau </span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clust_country_indep <span class="ot">&lt;-</span> MultiplexFitIndep<span class="sc">$</span>memberships[[<span class="dv">1</span>]]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(clust_country_indep)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       United States of America                         Canada </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              1                              1 </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Belize                    El Salvador </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Colombia                        Ecuador </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bolivia                        Uruguay </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bahamas                           Cuba </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Haiti             Dominican Republic </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Jamaica            Trinidad and Tobago </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Barbados                       Dominica </span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Grenada                      St. Lucia </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; St. Vincent and the Grenadines              Antigua &amp; Barbuda </span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            St. Kitts and Nevis                         Mexico </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Guatemala                       Honduras </span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Nicaragua                     Costa Rica </span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Panama                      Venezuela </span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Guyana                       Suriname </span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Peru                         Brazil </span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Paraguay                          Chile </span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Argentina                 United Kingdom </span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              4 </span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Netherlands                        Belgium </span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Luxembourg                         France </span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Spain                       Portugal </span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Germany        German Federal Republic </span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Poland                        Hungary </span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czech Republic                          Italy </span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Greece                         Norway </span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Denmark                        Iceland </span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bavaria     German Democratic Republic </span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Baden                   Wuerttemburg </span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Austria-Hungary                        Austria </span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czechoslovakia                       Slovakia </span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Malta                        Albania </span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Croatia                     Yugoslavia </span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         Bosnia and Herzegovina                         Cyprus </span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Bulgaria                        Moldova </span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Romania                         Russia </span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Estonia                         Latvia </span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Lithuania                        Ukraine </span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Belarus                        Armenia </span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Georgia                     Azerbaijan </span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Finland                         Sweden </span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Cape Verde          Sao Tome and Principe </span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Guinea-Bissau </span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5</span></span></code></pre></div>
 <p>And we can plot the reorganized adjacency matrices or the
 corresponding expectations:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitIndep)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitIndep)</span></code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAIAAACb4TnXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAasElEQVR4nO3de3QU5fkH8GcSErkk0CSS5SKlITQIaNWAJ0qgEC41tqClEo4ej5QflOYgIAYLadOCWG/kQFHqIXg5ldDKNT1tD+05oAEOiVwaXCWUtuDagBhRgkAOgYTcNvv7Y2AYZmZ3Z2bn2Z3d+X4Of+zOzjzz7huefd995513BZ/PRwDAIy7SBQCIZUgwAEZIMABGSDAARkgwAEZIMABG3fhCf/3113zBnaN79+4pKSnq7aheq/Tv358vOGOCXblyhS84oHqtwppg6CICMEKCATBCggEwQoIBMEKCATBCggEwis0E6+rqWrlypdGjmpub8/LyvF4vQ4muq6qq6ujo4IsfHjas3gMHDsyZM+eRRx5ZunRpQ0MDxynMic0E8/l8hw8flm/p7OyMVGGkU3/55ZerV69ub2+PVEmsYrfqPXfu3KpVq5YuXbp9+/Z+/fq99tprkSqMGuOFZkPef//9P/3pT21tbZMmTZo3b158fPyePXvKy8tbW1vvv//+xYsXd+/evba29r333luzZg0RVVVVHTx4sKSkpK6u7o033khOTj558uTAgQMXLlw4dOjQ559/vqOjY/78+UVFRRs3bhw4cODnn3/et2/fESNGTJs2jYjWrFmTkZHx2GOP6Snbli1bdu7c2dzcnJmZuWLFinfeeUcdx+12l5WVtbS0ZGdnFxUVJSQkeDwe6dRr1qx5/vnnjxw50traylqN/sR29ebn5993333Dhw8nooKCgoULF3LWpTG2aMFOnz797rvvrl279u233/7nP/9ZW1t79uzZsrKyV199dfv27deuXXvvvfcCHH7s2LHx48fv2LFj6NCh27dvJ6IXXnghISFhw4YNRHT06NHBgweXlpY+8MADNTU1dOMDeOzYsXrK9uWXX27evHndunV//etfU1NTd+3apY7T2Nj4wgsvLF++fPPmzT6fb/369eKx0qnFIu3atSsxMTG0qjIj5qt37NixxcXF4kaPxzNs2LAQastitkiwqqqqhx56KD09PSUlpaSkJC0t7eDBgxMmTBg0aFB8fPyTTz554MCBAIf36NEjLy9PEIScnJzm5mbFq8nJydOmTYuPjx81atSxY8e8Xu+JEyduv/12l8ul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" /><!-- --></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitIndep,<span class="at">type=</span><span class="st">&quot;expected&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitIndep, <span class="at">type =</span> <span class="st">&quot;expected&quot;</span>)</span></code></pre></div>
 <p><img src="data:image/png;base64,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+T/4YMvYsc1pab5Ymtuqq6u9H/JNgfE7GCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBggQD03Vd13W5+UD3xxkMEERggCDBwDRN0zRNbj7Q/XEGAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCBJF1VZqW/c6GJ7WZm+davsrh0OH9Y//tirCS0t+u9+pzc0+GY9vrVjh/7lly62b92ql5V1xQIqKlx/id3y17/qhYW+WE23o+m6frMbB3os7iICgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwQRGCCIwABBBAYIIjBAEIEBgggMEERggCACAwT9P58WPBG0RtOcAAAAAElFTkSuQmCC" /><!-- --></p>
 </div>
 <div id="fitting-a-multiplex-sbm-model-where-the-two-layers-are-assumed-to-be-dependent" class="section level1">
 <h1>Fitting a multiplex SBM model where the two layers are assumed to be
 dependent</h1>
 <p>Now we assume that the two layers are dependent conditionally to the
-latent block variables. We then set <code>dependent=TRUE</code></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitdep <span class="ot">=</span> <span class="fu">estimateMultiplexSBM</span>(<span class="fu">list</span>(netA,netB),<span class="at">dependent =</span> <span class="cn">TRUE</span>,<span class="at">estimOptions =</span> <span class="fu">list</span>(<span class="at">verbosity=</span><span class="dv">0</span>))</span></code></pre></div>
+latent block variables. We then set <code>dependent = TRUE</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitdep <span class="ot">&lt;-</span> <span class="fu">estimateMultiplexSBM</span>(<span class="fu">list</span>(netA, netB), <span class="at">dependent =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimOptions =</span> <span class="fu">list</span>(<span class="at">verbosity =</span> <span class="dv">0</span>))</span></code></pre></div>
 <p>We can retrieve the clustering and compare it to the one obtained in
 the independent case.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>clust_country_dep <span class="ot">=</span> MultiplexFitdep<span class="sc">$</span>memberships[[<span class="dv">1</span>]]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(clust_country_indep)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       United States of America                         Canada </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              1                              1 </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Belize                    El Salvador </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Colombia                        Ecuador </span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bolivia                        Uruguay </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bahamas                           Cuba </span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Haiti             Dominican Republic </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Jamaica            Trinidad and Tobago </span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Barbados                       Dominica </span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Grenada                      St. Lucia </span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; St. Vincent and the Grenadines              Antigua &amp; Barbuda </span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            St. Kitts and Nevis                         Mexico </span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Guatemala                       Honduras </span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Nicaragua                     Costa Rica </span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Panama                      Venezuela </span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Guyana                       Suriname </span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Peru                         Brazil </span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Paraguay                          Chile </span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Argentina                 United Kingdom </span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              4 </span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Netherlands                        Belgium </span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Luxembourg                         France </span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Spain                       Portugal </span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Germany        German Federal Republic </span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Poland                        Hungary </span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czech Republic                          Italy </span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Greece                         Norway </span></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Denmark                        Iceland </span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bavaria     German Democratic Republic </span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Baden                   Wuerttemburg </span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Austria-Hungary                        Austria </span></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czechoslovakia                       Slovakia </span></span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Malta                        Albania </span></span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Croatia                     Yugoslavia </span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         Bosnia and Herzegovina                         Cyprus </span></span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Bulgaria                        Moldova </span></span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Romania                         Russia </span></span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Estonia                         Latvia </span></span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Lithuania                        Ukraine </span></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Belarus                        Armenia </span></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Georgia                     Azerbaijan </span></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Finland                         Sweden </span></span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Cape Verde          Sao Tome and Principe </span></span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Guinea-Bissau </span></span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5</span></span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>aricode<span class="sc">::</span><span class="fu">ARI</span>(clust_country_indep,clust_country_dep) </span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8886699</span></span></code></pre></div>
-<p>On top of the clustering comparison, we can compare the ICL criteria
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clust_country_dep <span class="ot">&lt;-</span> MultiplexFitdep<span class="sc">$</span>memberships[[<span class="dv">1</span>]]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(clust_country_indep)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       United States of America                         Canada </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              1                              1 </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Belize                    El Salvador </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Colombia                        Ecuador </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bolivia                        Uruguay </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              2                              2 </span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bahamas                           Cuba </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Haiti             Dominican Republic </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Jamaica            Trinidad and Tobago </span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Barbados                       Dominica </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Grenada                      St. Lucia </span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; St. Vincent and the Grenadines              Antigua &amp; Barbuda </span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            St. Kitts and Nevis                         Mexico </span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Guatemala                       Honduras </span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Nicaragua                     Costa Rica </span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Panama                      Venezuela </span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Guyana                       Suriname </span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           Peru                         Brazil </span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Paraguay                          Chile </span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              3 </span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Argentina                 United Kingdom </span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              3                              4 </span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Netherlands                        Belgium </span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Luxembourg                         France </span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Spain                       Portugal </span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Germany        German Federal Republic </span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Poland                        Hungary </span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czech Republic                          Italy </span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                         Greece                         Norway </span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Denmark                        Iceland </span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              4                              4 </span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Bavaria     German Democratic Republic </span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Baden                   Wuerttemburg </span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Austria-Hungary                        Austria </span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Czechoslovakia                       Slovakia </span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          Malta                        Albania </span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Croatia                     Yugoslavia </span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         Bosnia and Herzegovina                         Cyprus </span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       Bulgaria                        Moldova </span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Romania                         Russia </span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Estonia                         Latvia </span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                      Lithuania                        Ukraine </span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Belarus                        Armenia </span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Georgia                     Azerbaijan </span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        Finland                         Sweden </span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Cape Verde          Sao Tome and Principe </span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5                              5 </span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Guinea-Bissau </span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                              5</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>aricode<span class="sc">::</span><span class="fu">ARI</span>(clust_country_indep, clust_country_dep)</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8886699</span></span></code></pre></div>
+<p>On top of the clustering comparison, we can compare the ICL criterion
 to see which of the dependent or independent models is a best fit:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitdep<span class="sc">$</span>ICL</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1470.276</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>MultiplexFitIndep<span class="sc">$</span>ICL</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1434.602</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>MultiplexFitdep<span class="sc">$</span>ICL</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1470.276</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>MultiplexFitIndep<span class="sc">$</span>ICL</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1434.602</span></span></code></pre></div>
 <p>We can do the same plots for the reorganized matrices and the
 corresponding expectations. Note that the expectations correspond to the
 marginal expectation of each layer and it may be relevant to have a look
-to the conditional expectations.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitdep)</span></code></pre></div>
+at the conditional expectations.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitdep)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitdep,<span class="at">type=</span><span class="st">&quot;expected&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in self$predict(): provided expectations are the marginal expectations</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; in the dependent case</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(MultiplexFitdep, <span class="at">type =</span> <span class="st">&quot;expected&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in self$predict(): provided expectations are the marginal expectations</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; in the dependent case</span></span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 <p>For instance, we may want to compare the marginal distribution for
 two countries in their given blocks to have being at war while they are
 allied at some point (before or after):</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p11 <span class="ot">=</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob11</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p01 <span class="ot">=</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob01</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p10 <span class="ot">=</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob10</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># conditional probabilities of being at war while having been or will be allied</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p11<span class="sc">/</span>(p11<span class="sc">+</span>p10),<span class="dv">2</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.09 0.10 0.03 0.43</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.10 0.11 0.09 0.14</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 0.03 0.09 0.05 0.03</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 0.43 0.14 0.03 0.01</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal probabilities of being at war</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p11<span class="sc">+</span>p01,<span class="dv">2</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.07 0.04 0.03 0.14</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.04 0.10 0.04 0.13</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 0.03 0.04 0.05 0.03</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 0.14 0.13 0.03 0.02</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p11 <span class="ot">&lt;-</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob11</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p01 <span class="ot">&lt;-</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob01</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>p10 <span class="ot">&lt;-</span> MultiplexFitdep<span class="sc">$</span>connectParam<span class="sc">$</span>prob10</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># conditional probabilities of being at war while having been or will</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># be allied</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p11<span class="sc">/</span>(p11 <span class="sc">+</span> p10), <span class="dv">2</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.09 0.10 0.03 0.43</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.10 0.11 0.09 0.14</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 0.03 0.09 0.05 0.03</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 0.43 0.14 0.03 0.01</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal probabilities of being at war</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p11 <span class="sc">+</span> p01, <span class="dv">2</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.07 0.04 0.03 0.14</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.04 0.10 0.04 0.13</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 0.03 0.04 0.05 0.03</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 0.14 0.13 0.03 0.02</span></span></code></pre></div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
