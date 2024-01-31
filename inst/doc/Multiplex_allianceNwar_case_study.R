@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -22,10 +22,10 @@ netA <- defineSBM(A, model = "bernoulli", dimLabels = "country")
 netB <- defineSBM(B, model = "bernoulli", dimLabels = "country")
 plotMyMultiplexMatrix(list(netA, netB))
 
-## ---- echo = FALSE, results='hide'--------------------------------------------
+## ----echo = FALSE, results='hide'---------------------------------------------
 MultiplexFitIndep <- readRDS("Multiplex_allianceNwar_case_study.rds")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  MultiplexFitIndep <- estimateMultiplexSBM(list(netA, netB), dependent = FALSE,
 #      estimOptions = list(verbosity = 0))
 

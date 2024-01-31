@@ -1,6 +1,6 @@
 Package: sbm
 Title: Stochastic Blockmodels
-Version: 0.4.5
+Version: 0.4.6
 Authors@R: 
   c(person(given = "Julien", family = "Chiquet", role = c("aut", "cre"),
            email = "julien.chiquet@inrae.fr",
@@ -40,11 +40,11 @@ LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 NeedsCompilation: yes
-Packaged: 2023-01-09 09:19:08 UTC; jchiquet
+Packaged: 2024-01-31 08:58:52 UTC; jchiquet
 Author: Julien Chiquet [aut, cre] (<https://orcid.org/0000-0002-3629-3429>),
   Sophie Donnet [aut] (<https://orcid.org/0000-0003-4370-7316>),
   großBM team [ctb],
   Pierre Barbillon [aut] (<https://orcid.org/0000-0002-7766-7693>)
 Maintainer: Julien Chiquet <julien.chiquet@inrae.fr>
 Repository: CRAN
-Date/Publication: 2023-01-09 10:30:02 UTC
+Date/Publication: 2024-01-31 10:30:02 UTC

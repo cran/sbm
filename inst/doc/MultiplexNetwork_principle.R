@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -96,40 +96,40 @@ mySampleMultiplexSBM <-
 listSBM_BB <- mySampleMultiplexSBM$listSBM
 plotMyMultiplexMatrix(listSBM_BB)
 
-## ---- echo = FALSE, eval = TRUE-----------------------------------------------
+## ----echo = FALSE, eval = TRUE------------------------------------------------
 load(file = 'resVignetteSimuMultiplex.rda')
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  res_PB <- estimateMultiplexSBM(listSBM_PB)
 #  res_PB$storedModels
 
-## ---- echo = FALSE, eval = TRUE-----------------------------------------------
+## ----echo = FALSE, eval = TRUE------------------------------------------------
 res_PB$storedModels
 
-## ---- echo = TRUE, eval = TRUE------------------------------------------------
+## ----echo = TRUE, eval = TRUE-------------------------------------------------
 plot(res_PB)
 
-## ---- echo = TRUE, eval = TRUE------------------------------------------------
+## ----echo = TRUE, eval = TRUE-------------------------------------------------
 plot(res_PB, type = 'expected')
 
 ## -----------------------------------------------------------------------------
 All <- plotAlluvial(list(simulated  = mySampleMultiplexSBM_PB$memberships$Individuals, estim = res_PB$memberships$Individuals))
 All
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  res_GG <- estimateMultiplexSBM(listSBM_GG, dependent = TRUE, estimOptions = list(plot = FALSE, verbosity = 0 ))
 #  res_GG$storedModels
 
-## ---- echo = FALSE, eval = TRUE-----------------------------------------------
+## ----echo = FALSE, eval = TRUE------------------------------------------------
 res_GG$storedModels
 
-## ---- echo = TRUE, eval = TRUE------------------------------------------------
+## ----echo = TRUE, eval = TRUE-------------------------------------------------
 plot(res_GG)
 
-## ---- echo = TRUE, eval = FALSE-----------------------------------------------
+## ----echo = TRUE, eval = FALSE------------------------------------------------
 #  res_BB <- estimateMultiplexSBM(listSBM_BB,dependent =  TRUE, estimOptions = list(plot = FALSE, verbosity = 0 ))
 #  res_BB$storedModels
 
-## ---- echo = FALSE, eval = TRUE-----------------------------------------------
+## ----echo = FALSE, eval = TRUE------------------------------------------------
 res_BB$storedModels
 
